@@ -5,8 +5,8 @@ For now, graph after being parsed are nowhere written back. We are just doing mo
 If Needed we can add these modified graphs (near duplicates) in actual graph data.
 
 **Imp Obs:
-Many times random function cannot generate a few numbers paricularly, reason (being random), thus causing program to go infinite. I have bounded such modifications to 4 times of number of vertices.
+Many times random function cannot generate a few numbers paricularly, reason (being random), thus causing program to run for long. I have bounded such modifications to 4 times of number of max vertices.**
 
-compile : g++ duplicatGraphsGeneration.cpp  -o GraphGeneration
+**compile** : g++ duplicatGraphsGeneration.cpp  -o GraphGeneration
 
-run : ./GraphGeneration dataset.txt modifications.txt
+**run** : ./GraphGeneration dataset.txt modifications.txt
