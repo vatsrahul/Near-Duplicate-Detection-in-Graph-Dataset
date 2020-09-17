@@ -8,4 +8,4 @@
 
 **Dataset_generation_adding_NDG_with_labels** - This will be added soon as i get.
 
-**Naive_VEO_MULTISET_DUPLICATE_GRAPHS** - This will be added after removing bugs
+**Naive_VEO_MULTISET_DUPLICATE_GRAPHS** - Repository aims to find near duplicate using Naive VEO on labelled duplicate graph Dataset
