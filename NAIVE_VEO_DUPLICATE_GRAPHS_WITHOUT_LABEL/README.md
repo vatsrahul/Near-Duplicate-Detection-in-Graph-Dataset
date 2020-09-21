@@ -1,17 +1,6 @@
-# Naive VEO on Duplicate graph Dataset with Labels
+# Naive VEO on Duplicate graph Dataset WITHOUT Labels
 
-**Changes** i am making according to my current uderstanding.
-1.  Vertices array have ids in them which are sorted, and then in finding intersection labels are used.
-	example: 1,C 1,H 2,O 2,C 3,N 3,O........
-
-	But it should be sorted acc to labels and not vertex ids.
-	like : 1,C 2,C 1,H 3,N 2,O 3,O......
-	Then only we can apply merge 2 sort list algo to find intersection correctly.
-
-2.  For Edges though, labels are stored in pair format (large label, small label) in edges array.
-	and then intersection is applied but vid_to_vc is used. (A BLUNDER), i removed vid_to_vc as already labels were pushed in edges.
-
-
+Note: This code was cloned from naive_veo_with_labels and changeed accordingly. So somewhere might be comments might be wrong, though i have thoroughly checked.
 
 Program Flow:
 
@@ -49,13 +38,13 @@ Input Arguements:
 			2. file should be in the following format:
 			
 				g vertexCount edgeCount graph_id1
-				v vertex_id1 label
-				v vertex_id2 label
+				v vertex_id1
+				v vertex_id2
 				.
 				.
 				.
-				e source_vertex_id1 label destination_vertex_id1 label
-				e source_vertex_id2 label destination_vertex_id2 label
+				e source_vertex_id1 destination_vertex_id1
+				e source_vertex_id2 destination_vertex_id2
 				.
 				.
 				.

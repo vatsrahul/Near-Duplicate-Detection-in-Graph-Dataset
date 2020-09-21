@@ -6,7 +6,7 @@
 
 
 // Edge comparator
-bool edgeComp(pair<unsigned, unsigned> &a, pair<unsigned, unsigned> &b,Graph &g1,Graph &g2)// since we have stored labels in edges, so we need not use vid_to_vc here.
+bool edgeComp(pair<unsigned, unsigned> &a, pair<unsigned, unsigned> &b,Graph &g1,Graph &g2)
 {
 	if(a.first == b.first)
 		return a.second < b.second;
@@ -24,9 +24,9 @@ double intersection_vertices(vector<unsigned> &s1, vector<unsigned> &s2,unsigned
 
 	while(s1_iter < s1.size() && s2_iter < s2.size())
 	{
-		if(g1.vid_to_vc[s1[s1_iter]] < g2.vid_to_vc[s2[s2_iter]])
+		if(s1[s1_iter] < s2[s2_iter])
 			s1_iter++;
-		else if(g1.vid_to_vc[s1[s1_iter]] > g2.vid_to_vc[s2[s2_iter]])
+		else if(s1[s1_iter] > s2[s2_iter])
 			s2_iter++;
 		else
 		{

@@ -10,6 +10,8 @@
 
 
 void parseGraphDataset(ifstream &dataset_file, vector<Graph> &graph_dataset);
+void writeToFile(unsigned gnumber,unsigned gid, ofstream &duplicates_file,vector<Graph> &graph_dataset);
+
 int getRandomGraphNo(int NGraphs);
 int getRandomOperations(int nop);
 int getRandomVertexLabel(int maxV);
@@ -47,7 +49,7 @@ int main(int argc, char const *argv[])
     cout << argv[1] << ": Graph Dataset parsed." << endl;
 
     int NGraphs = graph_dataset.size();
-     
+    
     ifstream modification_file(argv[2]);  //The file to which we are writing
     if(!modification_file.is_open())        
     {
@@ -55,8 +57,17 @@ int main(int argc, char const *argv[])
         exit(0);
     }
 
+    ofstream duplicates_file(argv[3]);  //The file where duplicates will be written
+    if(!duplicates_file.is_open())        
+    {
+        cerr << "Unable to open duplicates file" << endl;
+        exit(0);
+    }
+    unordered_set<int> dups_graph;  // This set will contain graphs that are chosen to be modified. Only these will be written
+
+
     int noofmodi;    //Total Number Of Modifications that are to be made 
-    int maxV = 10;
+    int maxV = NGraphs;
     modification_file >> noofmodi;
     int nop = 4;
     for(int i = 0;i < noofmodi;i++)
@@ -79,9 +90,16 @@ int main(int argc, char const *argv[])
             cout << victimGraphNo << " ";
             cout << randomoper << '\n';
 
+            dups_graph.insert( victimGraphNo );  // storing graph number which is being modified.
+
             if(randomoper == 1)
             {
-                addVertex(graph_dataset,victimGraphNo,maxV,ged); //Calling addVertex Function
+                unsigned ver_count = graph_dataset[victimGraphNo].vertices.size();   // U cant ADD vertex if all maxV are already added
+                if( ver_count != maxV)
+                    addVertex(graph_dataset,victimGraphNo,maxV,ged); //Calling addVertex Function
+                else
+                    j--;
+                
             }
             else if(randomoper == 2)
             {
@@ -110,7 +128,22 @@ int main(int argc, char const *argv[])
     }
 
 
+// after doing modifications add graphs in a new file.
+// set dups_graph contain modified graphs, add them in file ==> duplicates_file
+
+    cout<<"\nOut of "<<NGraphs<<" graphs, "<<dups_graph.size()<<" are Modified randomly\n";
+
+    int g_no=1;
+    for(auto it :dups_graph){
+        cout<<"Graph no "<<it<<" is modified and saved as graph no "<<NGraphs+g_no<<"\n";
+        writeToFile(NGraphs+g_no, it, duplicates_file, graph_dataset);//Writing graph to resultant dataset file
+        g_no++;
+    }
+
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 bool isEdgeExist(unsigned i,unsigned j,vector<pair<unsigned, unsigned> > edges){
    
@@ -146,12 +179,31 @@ void addVertex(vector<Graph> &graph_dataset,int i,int maxV,int ged)
             graph_dataset[i].vertices.push_back(p);
             graph_dataset[i].vertexdeg.insert({p,1});
              va++;
+
+             attempts=0;
         }
         else
             attempts++;
 
         if(attempts > 4*maxV)
-            {cout<<"not possible\n";break;}   
+            {
+                //cout<<"not possible\n";break;
+                // YOU REACH HERE MEANS EVEN AFTER THESE MANY ATTEMPTS U R NOT ABALE TO GENERTE A RANDOM VERTEX WHICH DOES NOT EXIST ALREADY. SO FIND 1ST NON-EXISTING VERTEX
+                
+                for(int j=1; j<=maxV; j++){
+                    auto pos = graph_dataset[i].s.find(j);
+                    if(pos == graph_dataset[i].s.end())
+                    {
+                        graph_dataset[i].s.insert(j);
+                        graph_dataset[i].vertices.push_back(j);
+                        graph_dataset[i].vertexdeg.insert({j,1});
+                        va++;
+                        cout<<"successfuly added\n";
+                        attempts=0;
+                        break;
+                    }
+                }
+            }   
     }
 
 }
@@ -199,9 +251,14 @@ void addEdge(vector<Graph> &graph_dataset,int i,int maxV,int ged)
                         }
                     }
                     else attempts++;
-
+            
                     if(attempts > 4*maxV)
-                        {cout<<"not possible\n";break;}
+                    {
+                        //cout<<"not possible\n";break;
+                        // YOU REACH HERE MEANS EVEN AFTER THESE MANY ATTEMPTS U R NOT ABALE TO GENERTE A RANDOM EDGE WHICH DOES NOT EXIST ALREADY. SO FIND 1ST NON-EXISTING EDGE
+                        cout<<"couldnt add edge\n";break;
+
+                    }   
 			    }
     }
 
@@ -254,4 +311,16 @@ void parseGraphDataset(ifstream &dataset_file, vector<Graph> &graph_dataset)
 }
 
 
+void writeToFile(unsigned gno, unsigned gid, ofstream &duplicates_file,vector<Graph> &graph_dataset){
 
+    vector<pair<unsigned, unsigned> > edges = graph_dataset[gid].edges;
+    vector<unsigned> vertices = graph_dataset[gid].vertices;
+
+    duplicates_file << "g "<<vertices.size()<<" "<<edges.size()<<" "<<gno<<endl;
+
+    for(auto vid : vertices)
+		duplicates_file << "v " << vid << endl;
+    for(auto edg : edges)
+        duplicates_file << "e " << edg.first <<" "<< edg.second <<endl;
+
+}
