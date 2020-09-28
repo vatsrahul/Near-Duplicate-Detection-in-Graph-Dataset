@@ -83,14 +83,16 @@ int main(int argc, char const *argv[])
 
         for(int j = 0;j < noofgraphstochange;j++)
 	    {   
-            int victimGraphNo = getRandomGraphNo(NGraphs-1); //Select a random Graph Number 
+            int victimGraphNo = getRandomGraphNo(NGraphs); //Select a random Graph Number 
 
             int randomoper = getRandomOperations(nop); //Select a random operation that has to be made to the given graph 
 
             cout << victimGraphNo << " ";
             cout << randomoper << '\n';
 
-            dups_graph.insert( victimGraphNo );  // storing graph number which is being modified.
+            victimGraphNo--;  // SINCE 0 BASED INDEXING IN GRAPH_DATASET
+
+            dups_graph.insert( victimGraphNo);  // storing graph number which is being modified. Remeber :(for graph 1, it is atored at 0.)
 
             if(randomoper == 1)
             {
@@ -135,7 +137,7 @@ int main(int argc, char const *argv[])
 
     int g_no=1;
     for(auto it :dups_graph){
-        cout<<"Graph no "<<it<<" is modified and saved as graph no "<<NGraphs+g_no<<"\n";
+        cout<<"Graph no "<<it+1<<" is modified and saved as graph no "<<NGraphs+g_no<<"\n";   // (+1) is done bcoz graph are stored in 0-based indexing
         writeToFile(NGraphs+g_no, it, duplicates_file, graph_dataset);//Writing graph to resultant dataset file
         g_no++;
     }
