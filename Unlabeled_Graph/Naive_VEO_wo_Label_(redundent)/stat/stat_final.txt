@@ -1,0 +1,7 @@
+GSimJoin: VEO Similarity(naive)
+Dataset size: 16
+Similarity Score Threshold: 60
+Similar Graph Pairs: 7
+Memory used: 5.35547 MB
+Similarity Time: 0 milliseconds
+Total Time Taken: 65 milliseconds
