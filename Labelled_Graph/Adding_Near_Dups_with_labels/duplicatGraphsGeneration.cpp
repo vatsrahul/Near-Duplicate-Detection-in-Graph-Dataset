@@ -185,7 +185,7 @@ void addVertex(vector<Graph> &graph_dataset,int i,int maxV,int ged)
             graph_dataset[i].vertices.push_back(p);
             graph_dataset[i].vertexdeg.insert({p,1});
             graph_dataset[i].vid_to_vc[p] = 'A'+label;     // label is assigned to  new vertex
-             va++;cout<<"*"<<p<<" "<<graph_dataset[i].vid_to_vc[p];
+             va++;
 
              attempts=0;
         }
@@ -316,7 +316,7 @@ void parseGraphDataset(ifstream &dataset_file, vector<Graph> &graph_dataset)
 	for(auto g_iter = graph_dataset.begin(); g_iter != graph_dataset.end(); g_iter++)
 	{
 		g_iter->readGraph(dataset_file);
-		g_iter->displayGraph();
+		//g_iter->displayGraph();
 	}	
 }
 

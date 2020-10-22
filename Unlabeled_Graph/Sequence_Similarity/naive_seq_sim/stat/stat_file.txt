@@ -1,0 +1,8 @@
+GSimJoin: Sequence Similarity(naive)
+Dataset size: 524
+Shingle size: 3
+Similarity Score Threshold: 60
+Similar Graph Pairs: 8
+Memory used: 5.10156 MB
+Similarity Time: 0 milliseconds
+Total Time Taken: 303 milliseconds
