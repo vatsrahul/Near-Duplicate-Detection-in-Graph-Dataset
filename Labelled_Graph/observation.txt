@@ -1,0 +1,6 @@
+1. what is ideal percentage above which we can say graph is similar ?
+
+2. For same graph pair veo says they are (let) 80 % similar.  (also filtered version does not filter it out.)
+    but then seq_sim says they are (let) 25 % similar.    (but here filtered version filter this out.)
+
+    so it means while creating dataset, create some diplicates with only a little differece (say 1 or 2).

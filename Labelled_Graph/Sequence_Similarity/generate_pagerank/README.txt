@@ -1,3 +1,7 @@
+changes:
+vid are used to calculate pageank and not labels as we need to diferentiate between 2 same labels.
+
+
 Prgram Flow:
 
 	1. Parse the whole input file for Graph Dataset using parseGraphDataset().

@@ -10,7 +10,8 @@ bool vertexComp1(Vertex &v1, Vertex &v2)
 }
 bool vertexComp2(Vertex &v1, Vertex &v2)   // using only this comparator
 {
-	return v1.label < v2.label;    // sort on the basis of label
+	return v1.vid < v2.vid;
+	//return v1.label < v2.label;    // sort on the basis of label
 }
 
 bool edgeComp(Vertex* &e1, Vertex* &e2) 

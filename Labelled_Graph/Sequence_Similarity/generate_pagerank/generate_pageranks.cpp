@@ -140,12 +140,12 @@ void computePageRank(Graph &g)
 	/*copying graph*/
 	for(int i=0; i < g.vertexCount; i++)
 	{
-		PyList_SetItem(vertices,i,PyLong_FromLong(g.vertices[i].label));
+		PyList_SetItem(vertices,i,PyLong_FromLong(g.vertices[i].vid));
 		for(int j=0; j < g.vertices[i].edges.size(); j++){
 			/*an edge*/
 			e = PyTuple_New(2);
-			PyTuple_SetItem(e,0,PyLong_FromLong(g.vertices[i].label));
-			PyTuple_SetItem(e,1,PyLong_FromLong(g.vertices[i].edges[j]->label));
+			PyTuple_SetItem(e,0,PyLong_FromLong(g.vertices[i].vid));
+			PyTuple_SetItem(e,1,PyLong_FromLong(g.vertices[i].edges[j]->vid));
 			/*adding e to edges*/
 			PyTuple_SetItem(edges,edgeInd++,e);
 		}
