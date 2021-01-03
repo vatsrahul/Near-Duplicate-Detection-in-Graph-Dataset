@@ -1,0 +1,163 @@
+Testing for Non-Labeled VEO-Sim
+
+************************************************************************************
+Data set creation :
+************************************************************************************
+
+2000 graphs with 
+verices = (15-7)
+Edges = (60% - 40%)
+
+
+************************************************************************************
+Duplicate addition :
+************************************************************************************
+
+2 modifications With edit distance 5,10 on 50,50 graphs randomly.
+Resuled in 138 graphs being modified. 
+
+Out of 2000 graphs, 138 are Modified randomly
+Graph no 752 is modified and saved as graph no 2001
+Graph no 1715 is modified and saved as graph no 2002
+Graph no 469 is modified and saved as graph no 2003
+Graph no 1308 is modified and saved as graph no 2004
+Graph no 1137 is modified and saved as graph no 2005
+Graph no 981 is modified and saved as graph no 2006
+Graph no 1201 is modified and saved as graph no 2007
+Graph no 651 is modified and saved as graph no 2008
+Graph no 259 is modified and saved as graph no 2009
+Graph no 1242 is modified and saved as graph no 2010
+Graph no 463 is modified and saved as graph no 2011
+Graph no 1017 is modified and saved as graph no 2012
+Graph no 1508 is modified and saved as graph no 2013
+Graph no 227 is modified and saved as graph no 2014
+Graph no 162 is modified and saved as graph no 2015
+Graph no 689 is modified and saved as graph no 2016
+Graph no 1666 is modified and saved as graph no 2017
+Graph no 472 is modified and saved as graph no 2018
+Graph no 1275 is modified and saved as graph no 2019
+Graph no 1382 is modified and saved as graph no 2020
+Graph no 1955 is modified and saved as graph no 2021
+Graph no 211 is modified and saved as graph no 2022
+Graph no 808 is modified and saved as graph no 2023
+Graph no 146 is modified and saved as graph no 2024
+Graph no 1141 is modified and saved as graph no 2025
+Graph no 16 is modified and saved as graph no 2026
+Graph no 979 is modified and saved as graph no 2027
+Graph no 1173 is modified and saved as graph no 2028
+Graph no 1195 is modified and saved as graph no 2029
+Graph no 1394 is modified and saved as graph no 2030
+Graph no 36 is modified and saved as graph no 2031
+Graph no 77 is modified and saved as graph no 2032
+Graph no 1241 is modified and saved as graph no 2033
+Graph no 572 is modified and saved as graph no 2034
+Graph no 1918 is modified and saved as graph no 2035
+Graph no 652 is modified and saved as graph no 2036
+Graph no 166 is modified and saved as graph no 2037
+Graph no 1675 is modified and saved as graph no 2038
+Graph no 1397 is modified and saved as graph no 2039
+Graph no 718 is modified and saved as graph no 2040
+Graph no 631 is modified and saved as graph no 2041
+Graph no 34 is modified and saved as graph no 2042
+Graph no 1615 is modified and saved as graph no 2043
+Graph no 834 is modified and saved as graph no 2044
+Graph no 1033 is modified and saved as graph no 2045
+Graph no 929 is modified and saved as graph no 2046
+Graph no 220 is modified and saved as graph no 2047
+Graph no 1414 is modified and saved as graph no 2048
+Graph no 1140 is modified and saved as graph no 2049
+Graph no 1454 is modified and saved as graph no 2050
+Graph no 1357 is modified and saved as graph no 2051
+Graph no 835 is modified and saved as graph no 2052
+Graph no 39 is modified and saved as graph no 2053
+Graph no 1830 is modified and saved as graph no 2054
+Graph no 497 is modified and saved as graph no 2055
+Graph no 1094 is modified and saved as graph no 2056
+Graph no 1478 is modified and saved as graph no 2057
+Graph no 483 is modified and saved as graph no 2058
+Graph no 1987 is modified and saved as graph no 2059
+Graph no 129 is modified and saved as graph no 2060
+Graph no 1124 is modified and saved as graph no 2061
+Graph no 930 is modified and saved as graph no 2062
+Graph no 2 is modified and saved as graph no 2063
+Graph no 340 is modified and saved as graph no 2064
+Graph no 1335 is modified and saved as graph no 2065
+Graph no 1932 is modified and saved as graph no 2066
+Graph no 1299 is modified and saved as graph no 2067
+Graph no 1697 is modified and saved as graph no 2068
+Graph no 43 is modified and saved as graph no 2069
+Graph no 242 is modified and saved as graph no 2070
+Graph no 727 is modified and saved as graph no 2071
+Graph no 1371 is modified and saved as graph no 2072
+Graph no 973 is modified and saved as graph no 2073
+Graph no 1361 is modified and saved as graph no 2074
+Graph no 1302 is modified and saved as graph no 2075
+Graph no 429 is modified and saved as graph no 2076
+Graph no 80 is modified and saved as graph no 2077
+Graph no 1826 is modified and saved as graph no 2078
+Graph no 1032 is modified and saved as graph no 2079
+Graph no 355 is modified and saved as graph no 2080
+Graph no 1549 is modified and saved as graph no 2081
+Graph no 1243 is modified and saved as graph no 2082
+Graph no 1840 is modified and saved as graph no 2083
+Graph no 288 is modified and saved as graph no 2084
+Graph no 94 is modified and saved as graph no 2085
+Graph no 1779 is modified and saved as graph no 2086
+Graph no 1934 is modified and saved as graph no 2087
+Graph no 194 is modified and saved as graph no 2088
+Graph no 412 is modified and saved as graph no 2089
+Graph no 1009 is modified and saved as graph no 2090
+Graph no 213 is modified and saved as graph no 2091
+Graph no 193 is modified and saved as graph no 2092
+Graph no 989 is modified and saved as graph no 2093
+Graph no 1280 is modified and saved as graph no 2094
+Graph no 1079 is modified and saved as graph no 2095
+Graph no 1104 is modified and saved as graph no 2096
+Graph no 1063 is modified and saved as graph no 2097
+Graph no 1220 is modified and saved as graph no 2098
+Graph no 1618 is modified and saved as graph no 2099
+Graph no 444 is modified and saved as graph no 2100
+Graph no 842 is modified and saved as graph no 2101
+Graph no 1057 is modified and saved as graph no 2102
+Graph no 1853 is modified and saved as graph no 2103
+Graph no 301 is modified and saved as graph no 2104
+Graph no 1490 is modified and saved as graph no 2105
+Graph no 495 is modified and saved as graph no 2106
+Graph no 1547 is modified and saved as graph no 2107
+Graph no 552 is modified and saved as graph no 2108
+Graph no 1910 is modified and saved as graph no 2109
+Graph no 794 is modified and saved as graph no 2110
+Graph no 1192 is modified and saved as graph no 2111
+Graph no 379 is modified and saved as graph no 2112
+Graph no 1155 is modified and saved as graph no 2113
+Graph no 1117 is modified and saved as graph no 2114
+Graph no 321 is modified and saved as graph no 2115
+Graph no 1913 is modified and saved as graph no 2116
+Graph no 1316 is modified and saved as graph no 2117
+Graph no 1423 is modified and saved as graph no 2118
+Graph no 266 is modified and saved as graph no 2119
+Graph no 1062 is modified and saved as graph no 2120
+Graph no 6 is modified and saved as graph no 2121
+Graph no 1797 is modified and saved as graph no 2122
+Graph no 1996 is modified and saved as graph no 2123
+Graph no 603 is modified and saved as graph no 2124
+Graph no 277 is modified and saved as graph no 2125
+Graph no 1869 is modified and saved as graph no 2126
+Graph no 1073 is modified and saved as graph no 2127
+Graph no 262 is modified and saved as graph no 2128
+Graph no 820 is modified and saved as graph no 2129
+Graph no 538 is modified and saved as graph no 2130
+Graph no 406 is modified and saved as graph no 2131
+Graph no 8 is modified and saved as graph no 2132
+Graph no 522 is modified and saved as graph no 2133
+Graph no 1119 is modified and saved as graph no 2134
+Graph no 64 is modified and saved as graph no 2135
+Graph no 642 is modified and saved as graph no 2136
+Graph no 255 is modified and saved as graph no 2137
+Graph no 944 is modified and saved as graph no 2138
+
+
+
+
+
+

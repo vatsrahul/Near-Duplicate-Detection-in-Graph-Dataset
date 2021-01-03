@@ -24,7 +24,7 @@ Running the code:
 $ ./naive graph-dataset-file simScore_threshold dataset-size res-dir
 
 For Example:
-$ ./naive ./datasets/sorted_dataset_5_40.txt 60 1000 stat
+$ ./naive ./dataset/data_file.txt 60 16 stat
 
 Input Arguements:
 

@@ -4,4 +4,4 @@ Similarity Score Threshold: 60
 Similar Graph Pairs: 7
 Memory used: 5.22656 MB
 Similarity Time: 0 milliseconds
-Total Time Taken: 10 milliseconds
+Total Time Taken: 27 milliseconds

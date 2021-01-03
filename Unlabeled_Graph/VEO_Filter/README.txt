@@ -8,7 +8,7 @@ Program Flow:
 
 	4. Apply Loose size and Common Vertex filter over graph dataset.
 
-	5. Sort all graphs' vertex-set and edge-list of each vertex based on quality of vertices 
+	5. ~
 
 	6. If index filter is being applied, index graph dataset to form rank-list 
 
@@ -38,13 +38,13 @@ Running the code:
 ./filter inp_file 4 simScore_threshold mismatch noofbuckets dataset-size res-dir
 
 For Example:
-./filter ./datasets/sorted_dataset_5_40.txt 4 60 0 2 1000 stat
+./filter ./datasets/sorted_dataset_5_40.txt 4 60 0 10 1000 stat
 
 Input Arguements:
 
 	1. graph-dataset-file:
 		Requirements:
-			1. dataset must be already sorted based on no. of vertices
+			1. ~
 			2. file should be in the following format:
 			
 				g vertexCount edgeCount graph_id1
@@ -63,7 +63,7 @@ Input Arguements:
 				.
 				.
 
-	2. choice: valid inputs : 1 for only loose size filter, 2 for loose size and common vertex filter, 3 for loose size, common vertex and banding technique filter.
+	2. choice: valid inputs : 1 for only loose size filter, 2 for loose size and common vertex filter, 3 for loose size, common vertex and static index filter, 4 for loose size, common vertex and Dynamic index filter.
 
 	3. simScore_threshold: only those graph pairs with similarity score greater than this threshold will be stored in a file
 
