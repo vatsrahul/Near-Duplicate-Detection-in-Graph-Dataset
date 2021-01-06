@@ -69,7 +69,8 @@ Input Arguements:
 
 	4. mismatch: 0 or 1 for true/false, if we want to apply mismatching filter or not
 
-	5. noofbuckets: no. of buckets used while applying indexing filter
+	5. noofbuckets: no. of buckets used.
+	   Put it 0, if not applying Partition filter. 
 
 	8. dataset-size: size of dataset to be selected
 

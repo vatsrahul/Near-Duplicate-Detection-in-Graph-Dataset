@@ -63,13 +63,14 @@ Input Arguements:
 				.
 				.
 
-	2. choice: valid inputs : 1 for only loose size filter, 2 for loose size and common vertex filter, 3 for loose size, common vertex and banding technique filter.
+	2. choice: valid inputs : 1 for only loose size filter, 2 for loose size and strict filter, 3 for loose size, strict size and static index filter, 4 for loose size, strict size and Dynamic index filter.
 
 	3. simScore_threshold: only those graph pairs with similarity score greater than this threshold will be stored in a file
 
 	4. mismatch: 0 or 1 for true/false, if we want to apply mismatching filter or not
 
-	5. noofbuckets: no. of buckets used while applying indexing filter
+	5. noofbuckets: no. of buckets used.
+		Keep it 0, if not applying partition filter 
 
 	8. dataset-size: size of dataset to be selected
 
