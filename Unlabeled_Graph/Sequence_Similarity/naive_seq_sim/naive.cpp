@@ -268,7 +268,8 @@ void loadPageRanks(ifstream &pagerank_file, vector<Graph> &graph_dataset, int &d
 		}
 	}
 }
-
+ 
+// (Not used)
 // graph comparator for sorting graph dataset
 bool graphComp(Graph &g1, Graph &g2)
 {

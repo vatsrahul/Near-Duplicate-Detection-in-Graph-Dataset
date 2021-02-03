@@ -132,6 +132,10 @@ void VEO:: ranking(vector<Graph> &graph_dataset)
 		rank[entry->first] = r;
 		r++;
 	}
+
+	// setting the size of invertecindex list as max value of rank - r
+	InvertedIndex.resize(r);
+
 }
 
 void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, int no_of_buckets)
@@ -162,7 +166,7 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 		}
 		
 		// Constructing the rank-list 
-
+	
 		// Putting vertex and edge ranks together
 		vector<unsigned> graph_ranks;
 		for(int vtx_ind = 0; vtx_ind < graph_dataset[g_ind].vertices.size(); vtx_ind++)
@@ -188,6 +192,8 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 		for(int pref = 0; pref < prefixLength; pref++)
 			rankList[g_ind].push_back(graph_ranks[pref]);
 
+		// rankList is till prefix length
+
 		if(isBucket)
 		{
 			bucket[g_ind].resize(no_of_buckets);
@@ -207,6 +213,50 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 			}
 		}
 	}
+
+
+// INVERTED INDEXING FOR RANKLISTS
+
+	vector< unordered_map<int,int> > sparse_table;    // a array of hash_table
+	sparse_table.resize(graph_dataset.size());
+
+	for(int g_ind = 0; g_ind < graph_dataset.size(); g_ind++)
+	{
+
+		int prefixLength = rankList[g_ind].size();
+
+		///////////////////////////////////////////////////
+		// for this particular graph, make a sparse table with help of inverted list
+
+	//	set<int> ss; // ss set contains list of graphs which are similar to (g_ind)th graph
+
+		for(int i = 0; i < prefixLength; i++){ // traversing a graph
+
+			int rank = rankList[g_ind][i];
+
+			for(int j = 0; j < InvertedIndex[rank].size(); j++){ // traversing a rank's inverted list
+
+				int gr = InvertedIndex[rank][j];
+				if(gr == g_ind)		// skipping itself in inverted list
+					continue;
+				
+				//ss.insert ( InvertedIndex[rank][j] );
+				if( sparse_table[g_ind].count( gr ) == 0)  // if occuring for the first time
+					sparse_table[g_ind][ gr ] = 1;
+				else
+					sparse_table[g_ind][ gr ] ++;
+			}
+		}
+
+		///////////////////////////////////////////////////
+
+		//Now lets create InvertedIndex for (g_ind)th graph..
+		
+		for(int pref = 0; pref < prefixLength; pref++)
+			InvertedIndex[ rankList[g_ind][pref] ].push_back(g_ind);
+
+	}
+
 }
 
 // index each input graphs in dataset

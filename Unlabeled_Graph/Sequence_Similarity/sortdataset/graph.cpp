@@ -2,7 +2,7 @@
 #include "graph.h"
 using namespace std;
 
-bool vertexComp1(Vertex &v1, Vertex &v2)
+bool vertexComp1(Vertex &v1, Vertex &v2)  // not used
 {
 	if(v1.quality == v2.quality)
 		return v1.vid < v2.vid;
@@ -13,7 +13,7 @@ bool vertexComp2(Vertex &v1, Vertex &v2)
 	return v1.vid < v2.vid;
 }
 
-bool edgeComp(Vertex* &e1, Vertex* &e2) 
+bool edgeComp(Vertex* &e1, Vertex* &e2) // not used
 {
 	if(e1->quality == e2->quality)
 		return e1->vid < e2->vid;
