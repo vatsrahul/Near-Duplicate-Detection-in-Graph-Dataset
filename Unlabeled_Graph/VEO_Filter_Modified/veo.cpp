@@ -188,16 +188,6 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 		// sort the ranks of the graph in descending order  
 		sort(graph_ranks.begin(), graph_ranks.end(), greater <>());
 
-/*		for(int tt=0;tt<graph_ranks.size()-1;tt++)
-		if(graph_ranks[tt] == graph_ranks[tt+1])
-		//graph_ranks[tt]=0,
-		cout<<"jhol h dataset m at "<<graph_dataset[g_ind].gid<<"\n";
-
-if(g_ind == 38 or g_ind==26)
-{
-	for(auto i: graph_ranks)cout<<i<<" "; cout<<"\n";
-}
-*/
 
 		// crop graph's rank-list upto prefix-length
 		for(int pref = 0; pref < prefixLength; pref++)
@@ -255,8 +245,8 @@ if(g_ind == 38 or g_ind==26)
 					sparse_table[g_ind][ gr ].first = 1;
 				else
 					{
-						sparse_table[g_ind][ gr ].first ++;
-						sparse_table[g_ind][ gr ].second = InvertedIndex[rank][j].second;
+						sparse_table[g_ind][ gr ].first ++;		// incrementing the count of commons in 2 graphs list upto a length
+						sparse_table[g_ind][ gr ].second = InvertedIndex[rank][j].second;  // storing that length of gr (shorter graph) upto which commons have been counted
 					}
 				}
 		}
@@ -266,7 +256,7 @@ if(g_ind == 38 or g_ind==26)
 		//Now lets create InvertedIndex for (g_ind)th graph..
 		
 		for(int pref = 0; pref < prefixLength; pref++)
-			InvertedIndex[ rankList[g_ind][pref] ].push_back({g_ind, pref+1});
+			InvertedIndex[ rankList[g_ind][pref] ].push_back({g_ind, pref+1}); // pushing graph_id and position of the particular attribute/rank in that graph's list 
 
 	}
 
@@ -341,7 +331,7 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 
 //cout<<partial_score<<"\n";
         remaining1 = size1 - prefix1;  // big graph
-        remaining2 = size2 - sparse_table[index1][index2].second;
+        remaining2 = size2 - sparse_table[index1][index2].second;   // sparse_table[index1][index2].second is the position upto which partial_score is stored in sparse table
         
         long double sizeSum = (long double)(size1 + size2);
         long double Common = (long double)1.0*(partial_score + min(remaining1, remaining2));
