@@ -188,6 +188,17 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 		// sort the ranks of the graph in descending order  
 		sort(graph_ranks.begin(), graph_ranks.end(), greater <>());
 
+/*		for(int tt=0;tt<graph_ranks.size()-1;tt++)
+		if(graph_ranks[tt] == graph_ranks[tt+1])
+		//graph_ranks[tt]=0,
+		cout<<"jhol h dataset m at "<<graph_dataset[g_ind].gid<<"\n";
+
+if(g_ind == 38 or g_ind==26)
+{
+	for(auto i: graph_ranks)cout<<i<<" "; cout<<"\n";
+}
+*/
+
 		// crop graph's rank-list upto prefix-length
 		for(int pref = 0; pref < prefixLength; pref++)
 			rankList[g_ind].push_back(graph_ranks[pref]);
@@ -217,7 +228,6 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 
 // INVERTED INDEXING FOR RANKLISTS
 
-	vector< unordered_map<int,int> > sparse_table;    // a array of hash_table
 	sparse_table.resize(graph_dataset.size());
 
 	for(int g_ind = 0; g_ind < graph_dataset.size(); g_ind++)
@@ -236,16 +246,19 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 
 			for(int j = 0; j < InvertedIndex[rank].size(); j++){ // traversing a rank's inverted list
 
-				int gr = InvertedIndex[rank][j];
+				int gr = InvertedIndex[rank][j].first;
 				if(gr == g_ind)		// skipping itself in inverted list
 					continue;
 				
 				//ss.insert ( InvertedIndex[rank][j] );
 				if( sparse_table[g_ind].count( gr ) == 0)  // if occuring for the first time
-					sparse_table[g_ind][ gr ] = 1;
+					sparse_table[g_ind][ gr ].first = 1;
 				else
-					sparse_table[g_ind][ gr ] ++;
-			}
+					{
+						sparse_table[g_ind][ gr ].first ++;
+						sparse_table[g_ind][ gr ].second = InvertedIndex[rank][j].second;
+					}
+				}
 		}
 
 		///////////////////////////////////////////////////
@@ -253,9 +266,31 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 		//Now lets create InvertedIndex for (g_ind)th graph..
 		
 		for(int pref = 0; pref < prefixLength; pref++)
-			InvertedIndex[ rankList[g_ind][pref] ].push_back(g_ind);
+			InvertedIndex[ rankList[g_ind][pref] ].push_back({g_ind, pref+1});
 
 	}
+
+	// for(auto x: rankList[38])
+	// cout<<x<<" ";
+	// cout<<"\n";
+	// for(auto x: rankList[26])
+	// cout<<x<<" ";
+	// cout<<"\n";
+	
+
+	/*cout<<"5 33 "<< sparse_table[38][26]<<"\n";
+	cout<<intersection_vertices(graph_dataset[38].vertices,graph_dataset[26].vertices ) <<" - "<< 
+	intersection_edges(graph_dataset[38].edges,graph_dataset[26].edges) <<"\n";
+	cout<<"rlist :"<<rankList[38].size()<<"\n";
+	cout<<"rlist :"<<rankList[26].size()<<"\n";
+	
+	cout<<"remain :"<<graph_dataset[38].edgeCount+graph_dataset[38].vertexCount - rankList[38].size()<<"\n";
+	cout<<"remain :"<<graph_dataset[26].edgeCount+graph_dataset[26].vertexCount - rankList[26].size()<<"\n";
+	
+
+	cout<<"6 8 "<< sparse_table[8][6]<<"\n";
+	cout<<intersection_vertices(graph_dataset[6].vertices,graph_dataset[8].vertices ) + 
+	intersection_edges(graph_dataset[6].edges,graph_dataset[8].edges) <<"\n";*/
 
 }
 
@@ -291,7 +326,35 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 	unsigned start2 = 0;
 	bool out = true;
 	long double commonTotal=0;
-	while(start1 < prefix1 && start2 < prefix2)
+
+	// atleast 1 common you got in the prefix part, then .
+    if(sparse_table[index1].count(index2) != 0 or sparse_table[index2].count(index1) != 0)
+        //{out = false; cout<<"f\n";}
+    {
+		out=false;
+        int partial_score, remaining1, remaining2;
+
+        if(sparse_table[index1].count(index2) != 0)
+            partial_score = sparse_table[index1][index2].first;
+        else
+            partial_score = sparse_table[index2][index1].first;
+
+//cout<<partial_score<<"\n";
+        remaining1 = size1 - prefix1;  // big graph
+        remaining2 = size2 - sparse_table[index1][index2].second;
+        
+        long double sizeSum = (long double)(size1 + size2);
+        long double Common = (long double)1.0*(partial_score + min(remaining1, remaining2));
+        long double veoEstimate = (long double)(200.0*Common)/(sizeSum);
+
+	//	if(g1.gid == 5 and g2.gid == 33)
+       // cout<<index1<<" "<<index2<<" "<<" "<<veoEstimate<<"\n\n";
+        if((long double)veoEstimate < (long double)threshold)
+            out = true;
+    }
+
+
+	/*while(start1 < prefix1 && start2 < prefix2)
 	{
 		if(rankList[index1][start1] == rankList[index2][start2] && isBucket)
 		{
@@ -309,7 +372,7 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 			start1++;
 		else
 			start2++;
-	}
+	}*/
 	if(out)
 		return out;
 	indexCount++;
