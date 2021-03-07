@@ -190,7 +190,7 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 
 
 		// crop graph's rank-list upto prefix-length
-		for(int pref = 0; pref < prefixLength; pref++)
+		for(int pref = 0; pref < graph_size; pref++)
 			rankList[g_ind].push_back(graph_ranks[pref]);
 
 		// rankList is till prefix length
@@ -222,8 +222,10 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 
 	for(int g_ind = 0; g_ind < graph_dataset.size(); g_ind++)
 	{
-
-		int prefixLength = rankList[g_ind].size();
+		double graph_size = graph_dataset[g_ind].vertexCount + graph_dataset[g_ind].edgeCount; 
+		double invUbound = (double)1.0/ubound; // inverse of ubound
+		int	prefixLength = 1 +(unsigned)(ceil((graph_size*(double)(1.0-invUbound)))); // Prefix Length
+		//int prefixLength = rankList[g_ind].size();
 
 		///////////////////////////////////////////////////
 		// for this particular graph, make a sparse table with help of inverted list
@@ -260,27 +262,6 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 
 	}
 
-	// for(auto x: rankList[38])
-	// cout<<x<<" ";
-	// cout<<"\n";
-	// for(auto x: rankList[26])
-	// cout<<x<<" ";
-	// cout<<"\n";
-	
-
-	/*cout<<"5 33 "<< sparse_table[38][26]<<"\n";
-	cout<<intersection_vertices(graph_dataset[38].vertices,graph_dataset[26].vertices ) <<" - "<< 
-	intersection_edges(graph_dataset[38].edges,graph_dataset[26].edges) <<"\n";
-	cout<<"rlist :"<<rankList[38].size()<<"\n";
-	cout<<"rlist :"<<rankList[26].size()<<"\n";
-	
-	cout<<"remain :"<<graph_dataset[38].edgeCount+graph_dataset[38].vertexCount - rankList[38].size()<<"\n";
-	cout<<"remain :"<<graph_dataset[26].edgeCount+graph_dataset[26].vertexCount - rankList[26].size()<<"\n";
-	
-
-	cout<<"6 8 "<< sparse_table[8][6]<<"\n";
-	cout<<intersection_vertices(graph_dataset[6].vertices,graph_dataset[8].vertices ) + 
-	intersection_edges(graph_dataset[6].edges,graph_dataset[8].edges) <<"\n";*/
 
 }
 
@@ -302,8 +283,12 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 
 	if(mode == 3) // static Mode
 	{
-		prefix1 = rankList[index1].size(); // prefix-length of graph g1
-		prefix2 = rankList[index2].size(); // prefix-length of graph g2
+		double invUbound = (double)1.0/ubound; // inverse of ubound
+		//prefix1 = rankList[index1].size(); // prefix-length of graph g1
+		prefix1 = 1 +(unsigned)(ceil((size1*(double)(1.0-invUbound)))); // Prefix Length
+		//prefix2 = rankList[index2].size(); // prefix-length of graph g2
+		prefix2 = 1 +(unsigned)(ceil((size2*(double)(1.0-invUbound)))); // Prefix Length
+		
 	}
 	if(mode == 4)	// Dynamic Mode
 	{
@@ -388,6 +373,120 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 	}
 	return out;
 }
+
+int MAXDEPTH = 3;
+
+vector<unsigned> partition(vector<unsigned long>& x, int xs, int xe, unsigned w, unsigned l, unsigned r){
+
+	unsigned xl_s=-1, xl_e=-1, xr_s=-1, xr_e=-1, f=0, diff=0;
+
+	if(l<xs or l>xe or r<xs or r>xe or x[l] < w or x[r] > w)
+		return {0,0,0,0,0,0};
+	
+	int p = upper_bound(x.begin()+l, x.begin()+r+1, w, greater<unsigned long>()) - x.begin();
+
+	xl_s = xs;
+	xl_e = p-1;
+
+	if( x[p] == w)
+	{
+		xr_s = p+1;
+		xr_e = xe;
+		diff = 0; 
+	}
+	else
+	{
+		xr_s = p;
+		xr_e = xe;
+		diff = 1;	
+	}
+	
+	return {xl_s, xl_e, xr_s, xr_e, 1, diff};
+}
+
+unsigned SuffixUtil(vector<unsigned long>& x, vector<unsigned long>& y, int xs, int xe, int ys, int ye, double H_max, int d){
+
+	int xlen = xe-xs+1;
+	int ylen = ye-ys+1;
+	
+	if(d > MAXDEPTH)
+		return abs(xlen - ylen);
+
+	unsigned mid = ys + ceil(ylen/2);
+	unsigned w = y[mid];
+	unsigned o = (H_max - abs(xlen - ylen) )/2;
+	unsigned lo, ro , f=0, diff=0;
+
+	if(xlen < ylen)
+		lo=1, ro=0;
+	else
+		lo=0, ro=1;
+//cout<<"3\n";
+	unsigned yl_s, yl_e, yr_s, yr_e;
+	vector<unsigned> y_part = partition(y, ys, ye, w, mid, mid);
+//cout<<"4\n";
+	yl_s = y_part[0];
+	yl_e = y_part[1];
+	yr_s = y_part[2];
+	yr_e = y_part[3];
+	f    = y_part[4];
+	diff = y_part[5];
+
+
+	unsigned xl_s, xl_e, xr_s, xr_e;
+	vector<unsigned> x_part = partition(x, xs, xe, w, mid-o-abs(xlen - ylen)*lo, mid+o+abs(xlen - ylen)*ro);
+
+	xl_s = x_part[0];
+	xl_e = x_part[1];
+	xr_s = x_part[2];
+	xr_e = x_part[3];
+	f    = x_part[4];
+	diff = x_part[5];
+//cout<<"5\n";
+	if( f == 0)
+		return H_max + 1;
+	
+	int xl_len, xr_len, yl_len, yr_len;
+	xl_len = xl_e - xl_s + 1;
+	xr_len = xr_e - xr_s + 1;
+	yl_len = yl_e - yl_s + 1;
+	yr_len = yr_e - yr_s + 1;
+	
+	double Hl,Hr,H;
+	
+	H = abs(xl_len - yl_len) + abs(xr_len - yr_len) + diff;
+
+	if( H > H_max )
+		return H;
+	
+	Hl = SuffixUtil(x, y, xl_s, xl_e, yl_s, yl_e, H_max - abs(xr_len - yr_len) - diff, d+1);
+	H = Hl + abs(xr_len - yr_len) + diff;
+//cout<<"6\n";
+	if( H <= H_max)
+	{
+		Hr = SuffixUtil(x, y, xr_s, xr_e, yr_s, yr_e, H_max - Hl - diff, d+1);
+		return Hl + Hr + diff;
+	}
+//	cout<<"7\n";
+	return H;
+}
+
+bool VEO:: SuffixFilter(Graph &g1, Graph &g2, int index1, int index2, double threshold){
+
+	unsigned size1 = g1.vertexCount + g1.edgeCount; // Size of Graph g1
+	unsigned size2 = g2.vertexCount + g2.edgeCount; // Size of Graph g2
+
+	double H_max = size1 + size2 - 2*ceil((size1 + size2)*(threshold/(100+threshold)));
+//	cout<<"1\n";
+	double H = SuffixUtil(rankList[index1], rankList[index2], 0, size1-1, 0, size2-1,H_max, 1);
+//cout<<"2\n";
+cout<<H<<" "<<H_max<<"\n";
+	if(H <= H_max)
+		return false;
+
+	return true;
+}
+
 
 // MisMatching Filter
 bool VEO:: mismatchingFilter(Graph &g1, Graph &g2, double &common, double threshold)

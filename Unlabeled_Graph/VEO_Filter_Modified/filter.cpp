@@ -245,6 +245,11 @@ int main(int argc, char const *argv[])
 				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, staticCount, partitionCount, simScore_threshold);
 			if(choice == 4)
 				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, dynamicCount, partitionCount, simScore_threshold);
+			if(!out){ // suffix filter
+
+				out = veo_sim.SuffixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold);
+			}
+			
 			if(out)
 				continue;
 			else if(mismatch) 
