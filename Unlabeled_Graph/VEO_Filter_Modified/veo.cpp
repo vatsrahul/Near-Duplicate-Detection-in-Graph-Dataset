@@ -374,14 +374,14 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 	return out;
 }
 
-int MAXDEPTH = 3;
+int MAXDEPTH = 4;
 
 vector<unsigned> partition(vector<unsigned long>& x, int xs, int xe, unsigned w, unsigned l, unsigned r){
 
 	unsigned xl_s=-1, xl_e=-1, xr_s=-1, xr_e=-1, f=0, diff=0;
 
 	if(l<xs or l>xe or r<xs or r>xe or x[l] < w or x[r] > w)
-		return {0,0,0,0,0,0};
+		return {0,0,0,0,0,1};
 	
 	int p = upper_bound(x.begin()+l, x.begin()+r+1, w, greater<unsigned long>()) - x.begin();
 
@@ -403,7 +403,56 @@ vector<unsigned> partition(vector<unsigned long>& x, int xs, int xe, unsigned w,
 	
 	return {xl_s, xl_e, xr_s, xr_e, 1, diff};
 }
+double suffix_filter(vector<unsigned long>& xArray, vector<unsigned long>& yArray, int xStart, int xEnd, int yStart, int yEnd, int HD, int depth)
+{
+	if (xEnd <= xStart || yEnd <= yStart) return abs((xEnd - xStart) - (yEnd - yStart));
+	int left, right, mid, pos, token, offset;
+	int HDLeft, HDRight, HDLeftBound, HDRightBound;
+	int xLen = xEnd - xStart, yLen = yEnd - yStart;
 
+	mid = xStart + xLen / 2, token = xArray[mid];
+
+	if (xLen >= yLen) {
+		offset = (HD - (xLen - yLen)) / 2 + (xLen - yLen), left = yStart + xLen / 2 - offset;
+		offset = (HD - (xLen - yLen)) / 2, right = yStart + xLen / 2 + offset;
+	}
+	else {
+		offset = (HD - (yLen - xLen)) / 2, left = yStart + xLen / 2 - offset;
+		offset = (HD - (yLen - xLen)) / 2 + (yLen - xLen), right = yStart + xLen / 2 + offset;
+	}
+
+	if ((left >= yStart && yArray[left] > token) || (right < yEnd && yArray[right] < token)) return HD + 1;
+
+	int search_left = left >= yStart ? left : yStart;
+	int search_right = right + 1 < yEnd ? right + 1 : yEnd;
+	pos = lower_bound(yArray.begin() + search_left, yArray.begin() + search_right, token) - yArray.begin();
+	if (pos < yEnd && yArray[pos] == token) {
+		HDLeft = HDLeftBound = abs((mid - xStart) - (pos - yStart));
+		HDRight = HDRightBound = abs((xEnd - mid - 1) - (yEnd - pos - 1));
+		if (HDLeftBound + HDRightBound > HD) return HDLeftBound + HDRightBound;
+		if (depth < MAXDEPTH) {
+			HDLeft = suffix_filter(xArray, yArray, xStart, mid, yStart, pos, HD - HDRightBound, depth + 1);
+			if (HDLeft + HDRightBound > HD) return HDLeft + HDRightBound;
+			HDRight = suffix_filter(xArray, yArray, mid + 1, xEnd, pos + 1, yEnd, HD - HDLeft, depth + 1);
+		}
+		if (HDLeft + HDRight > HD) return HDLeft + HDRight;
+		return HDLeft + HDRight;
+	}
+	else {
+		HDLeft = HDLeftBound = abs((mid - xStart) - (pos - yStart));
+		HDRight = HDRightBound = abs((xEnd - mid - 1) - (yEnd - pos));
+		if (HDLeftBound + HDRightBound + 1 > HD) return HDLeftBound + HDRightBound + 1;
+		if (depth < MAXDEPTH) {
+			HDLeft = suffix_filter(xArray, yArray, xStart, mid, yStart, pos, HD - HDRightBound - 1, depth + 1);
+			if (HDLeft + HDRightBound + 1 > HD) return HDLeft + HDRightBound + 1;
+			HDRight = suffix_filter(xArray, yArray, mid + 1, xEnd, pos, yEnd, HD - HDLeft - 1, depth + 1);
+		}
+		if (HDLeft + HDRight + 1 > HD) return HDLeft + HDRight + 1;
+		return HDLeft + HDRight + 1;
+	}
+
+	return 0;
+}
 unsigned SuffixUtil(vector<unsigned long>& x, vector<unsigned long>& y, int xs, int xe, int ys, int ye, double H_max, int d){
 
 	int xlen = xe-xs+1;
@@ -475,16 +524,61 @@ bool VEO:: SuffixFilter(Graph &g1, Graph &g2, int index1, int index2, double thr
 
 	unsigned size1 = g1.vertexCount + g1.edgeCount; // Size of Graph g1
 	unsigned size2 = g2.vertexCount + g2.edgeCount; // Size of Graph g2
+	double invUbound = (double)1.0/ubound; // inverse of ubound
+	unsigned prefix1 = 1 +(unsigned)(ceil((size1*(double)(1.0-invUbound)))); // Prefix Length
+	unsigned prefix2 = 1 +(unsigned)(ceil((size2*(double)(1.0-invUbound)))); // Prefix Length
 
-	double H_max = size1 + size2 - 2*ceil((size1 + size2)*(threshold/(100+threshold)));
+
+	double H_max = size1 + size2 /*-((size1 + size2)*threshold/100.0) + 2*(sparse_table[index1][index2].first)*/ - 2*ceil(1.0*(size1 + size2)*(threshold/(100.0+threshold)));// - (prefix1 + sparse_table[index1][index2].second);
 //	cout<<"1\n";
-	double H = SuffixUtil(rankList[index1], rankList[index2], 0, size1-1, 0, size2-1,H_max, 1);
+	double H = suffix_filter(rankList[index1], rankList[index2], prefix1, size1-1, sparse_table[index1][index2].second, size2-1,H_max, 1);
 //cout<<"2\n";
-cout<<H<<" "<<H_max<<"\n";
+cout<<H<<" "<<H_max<<" "<<size1 + size2-prefix1-sparse_table[index1][index2].second<<"\n";
 	if(H <= H_max)
 		return false;
 
 	return true;
+}
+
+
+bool VEO:: VertexFilter(Graph &g1, Graph &g2, int index1, int index2, double threshold){
+
+	unsigned size1 = g1.vertexCount + g1.edgeCount; // Size of Graph g1
+	unsigned size2 = g2.vertexCount + g2.edgeCount; // Size of Graph g2
+
+	vector<unsigned> and_product(g1.max_vertex, 0);
+	bitset<101> and_product2;
+	long double CommonEdges = 0, CommonVertex=0;;
+
+	and_product2 = g1.BinaryVertices2 & g2.BinaryVertices2 ;
+	CommonVertex = and_product2.count();   // gives all set bits
+
+	// traversing only the set bits in bitset
+	for (int i = and_product2._Find_first(); i < and_product2.size(); i = and_product2._Find_next(i)) 
+    {
+		CommonEdges += min(g1.degrees[i], g2.degrees[i]);
+	} 
+
+	/*for(int i=0; i< g1.max_vertex; i++)
+	{
+		and_product[i] = g1.BinaryVertices[i] & g2.BinaryVertices[i];
+
+		if(and_product[i]){
+			CommonVertex ++;
+			CommonEdges += min(g1.degrees[i], g2.degrees[i]);
+		}
+	}*/
+	CommonEdges = floor(CommonEdges/2.0);
+
+	long double sizeSum = (long double)(size1 + size2);
+        long double veoEstimate = (long double)(200.0*(CommonEdges + CommonVertex))/(sizeSum);
+
+	//	if(g1.gid == 5 and g2.gid == 33)
+       // cout<<index1<<" "<<index2<<" "<<(CommonEdges + CommonVertex)<<" "<<veoEstimate<<"\n";
+        if((long double)veoEstimate < (long double)threshold)
+            return true;
+
+	return false;
 }
 
 

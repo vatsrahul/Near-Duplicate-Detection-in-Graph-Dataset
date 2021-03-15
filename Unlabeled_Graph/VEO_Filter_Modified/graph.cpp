@@ -6,8 +6,10 @@ void Graph:: pushEdge(unsigned u,unsigned v){
 		edges.push_back(make_pair(u, v));
 	else 
 		edges.push_back(make_pair(v, u));
-	degrees[vid_to_ind[u]]++;
-	degrees[vid_to_ind[v]]++;
+	//degrees[vid_to_ind[u]]++;
+	//degrees[vid_to_ind[v]]++;
+	degrees[u]++;
+	degrees[v]++;
 }
 
 // reads the graph from input file 
@@ -19,16 +21,20 @@ void Graph:: readGraph(istream &inp){
 	inp >> edgeCount; // the no. of edges in the graph
 	inp >> gid; // the graph-id of the graph
 	vertices.resize(vertexCount);
-	degrees.assign(vertexCount, 0);
-	
+	degrees.assign(max_vertex+1, 0);
+	BinaryVertices.resize(max_vertex, 0);
+
 	unsigned ind = 0;
 	unsigned vid, src_vtx, dest_vtx;
+
 	for(int vtx_ind=0; vtx_ind < vertexCount; vtx_ind++)
 	{
 		// each line for each vertex should be in the format like: "v vid(unsigned int)"
 		inp >> tag >> vid; // the tag 'v' along with the vertex-id
 		vertices[vtx_ind] = vid;
 		vid_to_ind[vid] = vtx_ind; // mapping vertex-id to its index
+		BinaryVertices[ vid ] = 1; // make that bit as 1
+		BinaryVertices2[ vid ] = 1;
 	}
 	for(int e_ind = 0; e_ind < edgeCount; e_ind++)
 	{

@@ -17,6 +17,7 @@ public:
 	}
 	bool indexFilter(Graph &g2, Graph &g1, int index2, int index1, int mode, bool isBucket, int no_of_buckets, long unsigned &indexCount, long unsigned &partitionCount, double threshold);
 	bool SuffixFilter(Graph &g2, Graph &g1, int index2, int index1, double threshold);
+	bool VertexFilter(Graph &g2, Graph &g1, int index2, int index1, double threshold);
 	void ranking(vector<Graph> &graphDataset);
 	void buildPrefix(vector<Graph> &graphDataset, int type, bool isBucket, int b);
 	bool mismatchingFilter(Graph &g1, Graph &g2, double &c, double threshold);

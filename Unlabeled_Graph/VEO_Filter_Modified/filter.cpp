@@ -1,7 +1,7 @@
 #include "veo.h"
 
 using namespace std;
-
+unsigned long suffixCount = 0;
 // For parsing the input graph dataset
 void parseGraphDataset(ifstream &inp, vector<Graph> &graph_dataset, int &dataset_size);
 
@@ -69,6 +69,7 @@ void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsig
 	}
 	if(mismatch)
 		cout << "Mismatch Filter Count: " << mismatchCount << endl;
+	cout << "suffix Filter Count: " << suffixCount << endl;
 	cout << "Final Similar Pair Count: " << simPairCount << endl;
 	cout << "Memory used: " << memoryUsage() << " MB" << endl;
 	cout <<"Total Time Taken: "<< totalTimeTaken << " milliseconds" << endl;
@@ -245,11 +246,22 @@ int main(int argc, char const *argv[])
 				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, staticCount, partitionCount, simScore_threshold);
 			if(choice == 4)
 				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, dynamicCount, partitionCount, simScore_threshold);
-			if(!out){ // suffix filter
+			
+			
+			/*if(!out){ // suffix filter
 
 				out = veo_sim.SuffixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold);
-			}
+				if(!out)
+					suffixCount++;
+			}*/
 			
+			if(!out){ // vertex filter
+
+				out = veo_sim.VertexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold);
+				if(!out)
+					suffixCount++;
+			}
+
 			if(out)
 				continue;
 			else if(mismatch) 
