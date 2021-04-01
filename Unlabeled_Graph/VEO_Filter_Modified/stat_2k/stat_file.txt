@@ -1,6 +1,0 @@
-GSimJoin: VEO Similarity(filters)
-Choice: 3
-Similarity Score Threshold: 60
-Dataset Size: 2138
-Mismatch: 0
-No of Buckets: 0

@@ -255,12 +255,12 @@ int main(int argc, char const *argv[])
 					suffixCount++;
 			}*/
 			
-			if(!out){ // vertex filter
+			/*if(!out){ // vertex filter
 
 				out = veo_sim.VertexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold);
 				if(!out)
 					suffixCount++;
-			}
+			}*/
 
 			if(out)
 				continue;

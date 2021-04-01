@@ -33,6 +33,8 @@ void Graph:: readGraph(istream &inp){
 		inp >> tag >> vid; // the tag 'v' along with the vertex-id
 		vertices[vtx_ind] = vid;
 		vid_to_ind[vid] = vtx_ind; // mapping vertex-id to its index
+		if(vid > max_vertex)
+			continue;
 		BinaryVertices[ vid ] = 1; // make that bit as 1
 		BinaryVertices2[ vid ] = 1;
 	}

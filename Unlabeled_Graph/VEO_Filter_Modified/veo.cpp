@@ -374,7 +374,7 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 	return out;
 }
 
-int MAXDEPTH = 4;
+int MAXDEPTH = 3;
 
 vector<unsigned> partition(vector<unsigned long>& x, int xs, int xe, unsigned w, unsigned l, unsigned r){
 
@@ -529,11 +529,11 @@ bool VEO:: SuffixFilter(Graph &g1, Graph &g2, int index1, int index2, double thr
 	unsigned prefix2 = 1 +(unsigned)(ceil((size2*(double)(1.0-invUbound)))); // Prefix Length
 
 
-	double H_max = size1 + size2 /*-((size1 + size2)*threshold/100.0) + 2*(sparse_table[index1][index2].first)*/ - 2*ceil(1.0*(size1 + size2)*(threshold/(100.0+threshold)));// - (prefix1 + sparse_table[index1][index2].second);
+	double H_max = size1 + size2 /*-((size1 + size2)*threshold/100.0) + 2*(sparse_table[index1][index2].first)*/ - 2.0*ceil((size1 + size2)*(threshold/200.0));// - (prefix1 + sparse_table[index1][index2].second);
 //	cout<<"1\n";
 	double H = suffix_filter(rankList[index1], rankList[index2], prefix1, size1-1, sparse_table[index1][index2].second, size2-1,H_max, 1);
 //cout<<"2\n";
-cout<<H<<" "<<H_max<<" "<<size1 + size2-prefix1-sparse_table[index1][index2].second<<"\n";
+//cout<<H<<" "<<H_max<<" "<<size1 + size2-prefix1-sparse_table[index1][index2].second<<"\n";
 	if(H <= H_max)
 		return false;
 
