@@ -34,7 +34,7 @@ void Graph:: readGraph(istream &inp){
 		// each line for each edge should be in the format like: "e vid_src(unsigned int) vid_dest(unsigned int)"
 		inp >> tag >> src_vtx >> sc >> dest_vtx >> dc; // the tag 'e' along with the source and destination vertex-ids
 		// Undirected graph : adding edge source to destination and destination to source
-		pushEdge(sc, dc);			//NOTICE LABEL IS PASSED
+		pushEdge(vid_to_vc[src_vtx], vid_to_vc[dest_vtx]);			//NOTICE LABEL IS PASSED
 	}
 }
 

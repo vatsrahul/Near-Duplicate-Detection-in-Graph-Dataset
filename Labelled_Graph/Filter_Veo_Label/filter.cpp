@@ -239,7 +239,7 @@ int main(int argc, char const *argv[])
 				if(simScore_threshold <= strictBound) 
 					strictCount++;
 				else
-					continue;
+					{continue;}
 			}
 			if(choice == 3)
 				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, staticCount, partitionCount, simScore_threshold);

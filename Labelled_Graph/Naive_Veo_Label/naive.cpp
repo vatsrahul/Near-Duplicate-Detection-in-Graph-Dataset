@@ -49,12 +49,12 @@ int main(int argc, char const *argv[])
 	sortGraphDataset(graph_dataset); // to sort vertex and edge set
 	cout << "All graphs in dataset sorted." << endl;
     
-	
+	cout << 22;
 
 	ofstream all_graph_file("./"+res_dir+"/all_graph_file.txt");
 	all_graph_file.close();
 
-    //cout << 1;
+    cout << 11;
 
 	// Result-set for each graph as vector of other graph's gid and their similarity score as double
 	vector<pair<unsigned, double>> g_res; // stores graph pair with the score of a specific graph
