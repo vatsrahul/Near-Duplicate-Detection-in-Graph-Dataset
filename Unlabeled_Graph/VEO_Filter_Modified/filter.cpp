@@ -200,7 +200,10 @@ int main(int argc, char const *argv[])
 
 	// static/dyanmic partition filter
 	if(choice > 2) 
+	{
 		veo_sim.index(graph_dataset, choice, isBucket, no_of_buckets); // index input graphs
+		veo_sim.Preprocess_Suffix(graph_dataset, no_of_buckets);	// preprocessing for suffix filter
+	}
 
 	// Result-set for each graph as vector of other graph's gid and their similarity score as double
 	unordered_map<unsigned, vector<pair<unsigned, double>>> g_res; // stores graph pair with similarity score 
@@ -216,6 +219,8 @@ int main(int argc, char const *argv[])
 		long double currSize = graph_dataset[g1].vertexCount + graph_dataset[g1].edgeCount; 
 		//loose bound of PrevSize
 		long double minPrevSize = ceil(currSize/(long double)veo_sim.ubound);
+
+		veo_sim.calculate_sparse_table(graph_dataset, g1);	// this sparse table for g1 will be used in prefix and positioning filters.
 
 		for(int g2 = g1-1; g2 >= 0; g2--)
 		{
@@ -248,12 +253,12 @@ int main(int argc, char const *argv[])
 				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, dynamicCount, partitionCount, simScore_threshold);
 			
 			
-			/*if(!out){ // suffix filter
+			if(!out){ // suffix filter
 
-				out = veo_sim.SuffixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold);
+				out = veo_sim.SuffixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold, isBucket, no_of_buckets);
 				if(!out)
 					suffixCount++;
-			}*/
+			}
 			
 			/*if(!out){ // vertex filter
 
