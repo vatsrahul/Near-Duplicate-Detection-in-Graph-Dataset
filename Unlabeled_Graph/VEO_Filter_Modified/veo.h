@@ -16,9 +16,10 @@ public:
 		ubound = double((double)(200.0/threshold) -1.0);
 		cout << "ubound: " << ubound << endl;
 	}
-	bool indexFilter(Graph &g2, Graph &g1, int index2, int index1, int mode, bool isBucket, int no_of_buckets, long unsigned &indexCount, long unsigned &partitionCount, double threshold);
+	bool PrefixFilter(Graph &g2, Graph &g1, int index2, int index1, int mode, bool isBucket, int no_of_buckets, long unsigned &indexCount, double threshold);
+	bool PositioningFilter(Graph &g2, Graph &g1, int index2, int index1, int mode, bool isBucket, int no_of_buckets, long unsigned &indexCount, double threshold);
 	void Preprocess_Suffix(vector<Graph> &graph_dataset, int no_of_buckets);
-	bool SuffixFilter(Graph &g2, Graph &g1, int index2, int index1, double threshold, bool isBucket, int no_of_buckets);
+	bool SuffixFilter(Graph &g2, Graph &g1, int index2, int index1, double threshold, bool isBucket, int no_of_buckets, long unsigned &SuffixFilterCount);
 	bool VertexFilter(Graph &g2, Graph &g1, int index2, int index1, double threshold);
 	void ranking(vector<Graph> &graphDataset);
 	void buildPrefix(vector<Graph> &graphDataset, int type, bool isBucket, int b);

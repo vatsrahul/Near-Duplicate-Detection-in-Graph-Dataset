@@ -1,7 +1,7 @@
 #include "veo.h"
 
 using namespace std;
-unsigned long suffixCount = 0;
+
 // For parsing the input graph dataset
 void parseGraphDataset(ifstream &inp, vector<Graph> &graph_dataset, int &dataset_size);
 
@@ -48,28 +48,30 @@ void printingAndWritingInitialStatistics(int choice,double simScore_threshold,in
 	}
 	stat_file.close();
 }
-void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsigned long strictCount,unsigned long staticCount,bool isBucket,unsigned long partitionCount,unsigned long dynamicCount,bool mismatch,unsigned long mismatchCount,unsigned long simPairCount,int totalTimeTaken,const string res_dir,vector<long long int>& global_score_freq,unordered_map<unsigned, vector<pair<unsigned, double>>>& g_res)
+
+void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsigned long strictCount,unsigned long PrefixFilterCount,bool isBucket,unsigned long PositioningFilterCount,unsigned long SuffixFilterCount,bool mismatch,unsigned long mismatchCount,unsigned long simPairCount,int totalTimeTaken,const string res_dir,vector<long long int>& global_score_freq,unordered_map<unsigned, vector<pair<unsigned, double>>>& g_res)
 {
     // Displaying stat file...
 	if(choice >= 1)
 		cout << "Loose Filter Count: " << looseCount << endl;
 	if(choice >= 2)
 		cout << "Strict Filter Count: " << strictCount << endl;
-	if(choice == 3)
+	if(choice >= 3)
 	{
-		cout << "Static Filter Count: " << staticCount << endl;
-		if(isBucket)
-			cout << "Partiiton Filter Count: " << partitionCount << endl;
+		cout << "Prefix Filter Count: " << PrefixFilterCount << endl;
 	}
-	if(choice == 4)
+	if(choice >= 4)
 	{
-		cout << "Dynamic Filter Count: " << dynamicCount << endl;
-		if(isBucket)
-			cout << "Partiiton Filter Count: " << partitionCount << endl;
+		cout << "Positioning Filter Count: " << PositioningFilterCount << endl;
 	}
+	if(choice >= 5)
+	{
+		cout << "Suffix Filter Count: " << SuffixFilterCount << endl;
+	}
+	
 	if(mismatch)
 		cout << "Mismatch Filter Count: " << mismatchCount << endl;
-	cout << "suffix Filter Count: " << suffixCount << endl;
+
 	cout << "Final Similar Pair Count: " << simPairCount << endl;
 	cout << "Memory used: " << memoryUsage() << " MB" << endl;
 	cout <<"Total Time Taken: "<< totalTimeTaken << " milliseconds" << endl;
@@ -81,18 +83,19 @@ void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsig
 		stat_file << "Loose Filter Count: " << looseCount << endl;
 	if(choice >= 2)
 		stat_file << "Strict Filter Count: " << strictCount << endl;
-	if(choice == 3)
+	if(choice >= 3)
 	{
-		stat_file << "Static Filter Count: " << staticCount << endl;
-		if(isBucket)
-			stat_file << "Partiiton Filter Count: " << partitionCount << endl;
+		stat_file << "Prefix Filter Count: " << PrefixFilterCount << endl;
 	}
-	if(choice == 4)
+	if(choice >= 4)
 	{
-		stat_file << "Dynamic Filter Count: " << dynamicCount << endl;
-		if(isBucket)
-			stat_file << "Partiiton Filter Count: " << partitionCount << endl;
+		stat_file << "Positioning Filter Count: " << PositioningFilterCount << endl;
 	}
+	if(choice >= 5)
+	{
+		stat_file << "Suffix Filter Count: " << SuffixFilterCount << endl;
+	}
+	
 	if(mismatch)
 		stat_file << "Mismatch Filter Count: " << mismatchCount << endl;
 	stat_file << "Final Similar Pair Count: " << simPairCount << endl;
@@ -184,10 +187,10 @@ int main(int argc, char const *argv[])
 
 	unsigned long looseCount = 0; // No. of graphs filtered by loose size filter
 	unsigned long strictCount = 0; // No. of graphs filtered by strict size filter
-	unsigned long staticCount = 0; // No. of graphs filtered by static index filter
-	unsigned long dynamicCount = 0; // No. of graphs filtered by dynamic index filter
+	unsigned long PrefixFilterCount = 0; // No. of graphs filtered by static index filter
+	unsigned long PositioningFilterCount = 0; // No. of graphs filtered by dynamic index filter
 	unsigned long mismatchCount = 0; // No. of graphs filtered by mismatching filter
-	unsigned long partitionCount = 0; // No. of graphs filtered by partition filter
+	unsigned long SuffixFilterCount = 0; // No. of graphs filtered by partition filter
 	unsigned long simPairCount = 0; // No. of graph pairs having similarity score > threshold
 	bool out = false; // a flag used to indicate whether graph is pruned or not 
 	double simScore; // similarity score 
@@ -199,11 +202,14 @@ int main(int argc, char const *argv[])
 	VEO veo_sim = VEO(simScore_threshold);
 
 	// static/dyanmic partition filter
-	if(choice > 2) 
+	if(choice >= 3) 
 	{
 		veo_sim.index(graph_dataset, choice, isBucket, no_of_buckets); // index input graphs
-		veo_sim.Preprocess_Suffix(graph_dataset, no_of_buckets);	// preprocessing for suffix filter
+		//veo_sim.calculate_sparse_table(graph_dataset, 0);
 	}
+	if(choice == 5)
+		veo_sim.Preprocess_Suffix(graph_dataset, no_of_buckets);	// preprocessing for suffix filter
+
 
 	// Result-set for each graph as vector of other graph's gid and their similarity score as double
 	unordered_map<unsigned, vector<pair<unsigned, double>>> g_res; // stores graph pair with similarity score 
@@ -211,7 +217,8 @@ int main(int argc, char const *argv[])
 	vector<long long int> global_score_freq(102, 0); // stores sim-score frequency distribution of the dataset
 
  	// timestamping start time
-	chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::now();
+chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::now();
+
 
 	for(int g1 = 0; g1 < graph_dataset.size(); g1++)
 	{
@@ -220,8 +227,9 @@ int main(int argc, char const *argv[])
 		//loose bound of PrevSize
 		long double minPrevSize = ceil(currSize/(long double)veo_sim.ubound);
 
-		veo_sim.calculate_sparse_table(graph_dataset, g1);	// this sparse table for g1 will be used in prefix and positioning filters.
-
+	//	if(choice >= 3) 
+	//		veo_sim.calculate_sparse_table(graph_dataset, g1);	// this sparse table for g1 will be used in prefix and positioning filters.
+		bool done = true;
 		for(int g2 = g1-1; g2 >= 0; g2--)
 		{
 			double common = 0;
@@ -235,7 +243,7 @@ int main(int argc, char const *argv[])
 			else
 				break;
 
-			if(choice > 1)
+			if(choice >= 2)// strict filter
 			{
 				double maxIntersection = min(graph_dataset[g1].vertexCount, graph_dataset[g2].vertexCount) + min(graph_dataset[g1].edgeCount, graph_dataset[g2].edgeCount);
 				// strict bound
@@ -247,17 +255,26 @@ int main(int argc, char const *argv[])
 				else
 					continue;
 			}
-			if(choice == 3)
-				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, staticCount, partitionCount, simScore_threshold);
-			if(choice == 4)
-				out = veo_sim.indexFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, dynamicCount, partitionCount, simScore_threshold);
-			
-			
-			if(!out){ // suffix filter
-
-				out = veo_sim.SuffixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold, isBucket, no_of_buckets);
+			if(choice >= 3){
 				if(!out)
-					suffixCount++;
+				{
+					if(done)
+						veo_sim.calculate_sparse_table(graph_dataset, g1),	// this sparse table for g1 will be used in prefix and positioning filters.
+						done = false;
+					out = veo_sim.PrefixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, PrefixFilterCount, simScore_threshold);
+				}
+			}
+			if(choice >= 4){
+				if(!out)
+					out = veo_sim.PositioningFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, PositioningFilterCount, simScore_threshold);
+
+			}
+			
+			if(choice == 5) // suffix filter
+			{ 
+
+				if(!out)
+				out = veo_sim.SuffixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, simScore_threshold, isBucket, no_of_buckets, SuffixFilterCount);
 			}
 			
 			/*if(!out){ // vertex filter
@@ -311,7 +328,7 @@ int main(int argc, char const *argv[])
 	chrono::high_resolution_clock::time_point cl2 = chrono::high_resolution_clock::now();
 	int totalTimeTaken = (clocksTosec(cl0,cl2));
 
-    printingAndWritingFinalStatistics(choice,looseCount,strictCount,staticCount,isBucket,partitionCount,dynamicCount,mismatch,mismatchCount,simPairCount,totalTimeTaken,res_dir,global_score_freq,g_res);
+    printingAndWritingFinalStatistics(choice,looseCount,strictCount,PrefixFilterCount,isBucket,PositioningFilterCount,SuffixFilterCount,mismatch,mismatchCount,simPairCount,totalTimeTaken,res_dir,global_score_freq,g_res);
     
 	return 0;
 }
