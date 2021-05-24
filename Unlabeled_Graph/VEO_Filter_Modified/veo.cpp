@@ -212,7 +212,7 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 }
 int temp=0;
 
-void VEO:: calculate_sparse_table(vector<Graph> &graph_dataset, int g_ind) // INVERTED INDEXING FOR RANKLISTS
+void VEO:: calculate_sparse_table(vector<Graph> &graph_dataset, int g_ind, long double minPrevSize)  // INVERTED INDEXING FOR RANKLISTS
 {
 		chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
 
@@ -227,14 +227,17 @@ void VEO:: calculate_sparse_table(vector<Graph> &graph_dataset, int g_ind) // IN
 	for(int i = 0; i < prefixLength; i++){ // traversing a graph
 
 		int rank = rankList[g_ind][i];
-
-		for(int j = 0; j < InvertedIndex[rank].size(); j++){ // traversing a rank's inverted list
+		
+		for(int j = InvertedIndex[rank].size()-1; j>=0; j--){ // traversing a rank's inverted list(whisch is asc order) so we traverse from last
 
 			int gr = InvertedIndex[rank][j].first;
+			long double PrevSize = graph_dataset[gr].vertexCount + graph_dataset[gr].edgeCount;
+			if(PrevSize < minPrevSize)		// loose filter condition to break and stop unnecessary computation
+				break;
+
 			if(gr == g_ind)		// skipping itself in inverted list
 				continue;
 			
-			//ss.insert ( InvertedIndex[rank][j] );
 			if( sparse_table.count( gr ) == 0)  // if occuring for the first time
 				sparse_table[ gr ].first = 1;
 			else

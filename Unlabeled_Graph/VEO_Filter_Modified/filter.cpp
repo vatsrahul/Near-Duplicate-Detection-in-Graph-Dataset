@@ -74,7 +74,7 @@ void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsig
 
 	cout << "Final Similar Pair Count: " << simPairCount << endl;
 	cout << "Memory used: " << memoryUsage() << " MB" << endl;
-	cout <<"Total Time Taken: "<< totalTimeTaken << " milliseconds" << endl;
+	cout <<"Total Time Taken: "<< totalTimeTaken << " milliseconds" << endl << endl	;
         
         ofstream stat_file(res_dir+"/stat_file.txt");
 	stat_file.open(res_dir+"/stat_file.txt", ios::app);
@@ -227,9 +227,9 @@ chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::n
 		//loose bound of PrevSize
 		long double minPrevSize = ceil(currSize/(long double)veo_sim.ubound);
 
-	//	if(choice >= 3) 
-	//		veo_sim.calculate_sparse_table(graph_dataset, g1);	// this sparse table for g1 will be used in prefix and positioning filters.
-		bool done = true;
+		if(choice >= 3) 
+			veo_sim.calculate_sparse_table(graph_dataset, g1, minPrevSize);	// this sparse table for g1 will be used in prefix and positioning filters.
+	//	bool done = true;
 		for(int g2 = g1-1; g2 >= 0; g2--)
 		{
 			double common = 0;
@@ -258,9 +258,9 @@ chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::n
 			if(choice >= 3){
 				if(!out)
 				{
-					if(done)
-						veo_sim.calculate_sparse_table(graph_dataset, g1),	// this sparse table for g1 will be used in prefix and positioning filters.
-						done = false;
+					//if(done)
+						//veo_sim.calculate_sparse_table(graph_dataset, g1),	// this sparse table for g1 will be used in prefix and positioning filters.
+						//done = false;
 					out = veo_sim.PrefixFilter(graph_dataset[g1], graph_dataset[g2], g1, g2, choice, isBucket, no_of_buckets, PrefixFilterCount, simScore_threshold);
 				}
 			}

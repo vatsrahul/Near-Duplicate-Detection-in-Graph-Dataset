@@ -23,7 +23,7 @@ public:
 	bool VertexFilter(Graph &g2, Graph &g1, int index2, int index1, double threshold);
 	void ranking(vector<Graph> &graphDataset);
 	void buildPrefix(vector<Graph> &graphDataset, int type, bool isBucket, int b);
-	void calculate_sparse_table(vector<Graph> &graphDataset, int g_ind);
+	void calculate_sparse_table(vector<Graph> &graphDataset, int g_ind,  long double minPrevSize);
 	bool mismatchingFilter(Graph &g1, Graph &g2, double &c, double threshold);
 	void sortGraphDataset(vector<Graph> &graphDataset);
 	double computeSimilarity(Graph &g1, Graph &g2, double &commonV);
