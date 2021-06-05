@@ -125,6 +125,8 @@ void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsig
 	all_graph_file.close();
 
 }
+
+
 int main(int argc, char const *argv[])
 {
 	if(argc<6)
@@ -329,7 +331,7 @@ chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::n
 	int totalTimeTaken = (clocksTosec(cl0,cl2));
 
     printingAndWritingFinalStatistics(choice,looseCount,strictCount,PrefixFilterCount,isBucket,PositioningFilterCount,SuffixFilterCount,mismatch,mismatchCount,simPairCount,totalTimeTaken,res_dir,global_score_freq,g_res);
-    
+
 	return 0;
 }
 

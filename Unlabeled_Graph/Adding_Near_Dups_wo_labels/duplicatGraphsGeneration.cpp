@@ -17,6 +17,10 @@ int getRandomOperations(int nop);
 int getRandomVertexLabel(int maxV);
 
 
+void DFSUtil(int v, unordered_map<unsigned,bool> &visited, unordered_map<unsigned, vector<unsigned>> &adjacency_list);
+void ConnectedComponents(int i, vector<Graph> &graph_dataset);
+
+
 using namespace std;
 
 //One way of generating near duplicates is that keep track of array of edges considered for geneating graph like this you have for each graph a array now what we do is that vary like last two elements of the present array try to generate the graps for these and introduce them into dataset but this requires lot of space 
@@ -25,6 +29,7 @@ void addVertex(vector<Graph> &graph_dataset,int i,int maxV,int ged);
 void delVertex(vector<Graph> &graph_dataset,int i,int maxV,int ged);
 void addEdge(vector<Graph> &graph_dataset,int i,int maxV,int ged);
 void delEdge(vector<Graph> &graph_dataset,int i,int maxV,int ged);
+
 
 
 
@@ -67,7 +72,7 @@ int main(int argc, char const *argv[])
 
 
     int noofmodi;    //Total Number Of Modifications that are to be made 
-    int maxV = NGraphs;
+    int maxV = 30;//NGraphs;
     modification_file >> noofmodi;
     int nop = 4;
     for(int i = 0;i < noofmodi;i++)
@@ -83,22 +88,25 @@ int main(int argc, char const *argv[])
 
         for(int j = 0;j < noofgraphstochange;j++)
 	    {   
-            int victimGraphNo = getRandomGraphNo(NGraphs); //Select a random Graph Number 
+            int victimGraphNo = getRandomGraphNo(NGraphs); //Select a random Graph Number  (1 based)
 
             int randomoper = getRandomOperations(nop); //Select a random operation that has to be made to the given graph 
 
-            cout << victimGraphNo << " ";
+            cout << j<<" "<<victimGraphNo << " ";
             cout << randomoper << '\n';
 
             victimGraphNo--;  // SINCE 0 BASED INDEXING IN GRAPH_DATASET
 
-            dups_graph.insert( victimGraphNo);  // storing graph number which is being modified. Remeber :(for graph 1, it is atored at 0.)
+            //dups_graph.insert( victimGraphNo);  // storing graph number which is being modified. Remeber :(for graph 1, it is atored at 0.)
 
             if(randomoper == 1)
             {
                 unsigned ver_count = graph_dataset[victimGraphNo].vertices.size();   // U cant ADD vertex if all maxV are already added
                 if( ver_count != maxV)
-                    addVertex(graph_dataset,victimGraphNo,maxV,ged); //Calling addVertex Function
+                    {
+                        addVertex(graph_dataset,victimGraphNo,maxV,ged); //Calling addVertex Function
+                        dups_graph.insert( victimGraphNo);
+                    }
                 else
                     j--;
                 
@@ -106,7 +114,10 @@ int main(int argc, char const *argv[])
             else if(randomoper == 2)
             {
                 if(graph_dataset[victimGraphNo].s.size() > ged)
-                    delVertex(graph_dataset,victimGraphNo,maxV,ged); //Calling delVertex Function do it only when you have sufficient vertices to delete 
+                    {
+                        delVertex(graph_dataset,victimGraphNo,maxV,ged); //Calling delVertex Function do it only when you have sufficient vertices to delete 
+                        dups_graph.insert( victimGraphNo);
+                    }
                 else 
                     j--;
             }
@@ -115,14 +126,20 @@ int main(int argc, char const *argv[])
                 unsigned ver_count = graph_dataset[victimGraphNo].vertices.size();
                 unsigned edge_count = graph_dataset[victimGraphNo].edges.size();
                 if(edge_count != ver_count*(ver_count-1)/2)
-                    addEdge(graph_dataset,victimGraphNo,maxV,ged);
+                    {
+                        addEdge(graph_dataset,victimGraphNo,maxV,ged);
+                        dups_graph.insert( victimGraphNo);
+                    }
                 else
                     j--;
             }
             else if(randomoper == 4)
             {
                 if(graph_dataset[victimGraphNo].edges.size() > ged)
-                    delEdge(graph_dataset,victimGraphNo,maxV,ged); //Calling delVertex Function do it only when you have sufficient edges to delete 
+                    {
+                        delEdge(graph_dataset,victimGraphNo,maxV,ged); //Calling delVertex Function do it only when you have sufficient edges to delete 
+                        dups_graph.insert( victimGraphNo);
+                    }
                 else 
                     j--;
             }                  
@@ -138,10 +155,12 @@ int main(int argc, char const *argv[])
     int g_no=1;
     for(auto it :dups_graph){
         cout<<"Graph no "<<it+1<<" is modified and saved as graph no "<<NGraphs+g_no<<"\n";   // (+1) is done bcoz graph are stored in 0-based indexing
+        ConnectedComponents(it, graph_dataset);
+        //ConnectedComponents(it, graph_dataset);
+        
         writeToFile(NGraphs+g_no, it, duplicates_file, graph_dataset);//Writing graph to resultant dataset file
         g_no++;
     }
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -170,6 +189,8 @@ void addVertex(vector<Graph> &graph_dataset,int i,int maxV,int ged)
 {
 
     unsigned va = 0, attempts=0;
+    //unordered_set<unsigned> Vertex_set(graph_dataset[i].vertices.begin(), graph_dataset[i].vertices.end());
+
     while(va < ged)
     {
 
@@ -218,9 +239,26 @@ void delVertex(vector<Graph> &graph_dataset,int i,int maxV,int ged)
     int vd = ged;
     while(vd > 0)
     {
-        int p = rand() % graph_dataset[i].s.size();
-        graph_dataset[i].s.erase(p);
+        int index = rand() % graph_dataset[i].s.size();
+        int element = graph_dataset[i].vertices[index];
+
+        graph_dataset[i].s.erase(element);
+        graph_dataset[i].vertices.erase(graph_dataset[i].vertices.begin()+index);
         vd--;
+
+
+        // now remove that vertex associated edges as well
+        int sz = graph_dataset[i].edges.size();
+        for(auto e= 0; e<graph_dataset[i].edges.size() and sz; e++){
+            if(graph_dataset[i].edges[e].first == element or graph_dataset[i].edges[e].second == element){
+                swap(graph_dataset[i].edges[e], graph_dataset[i].edges[sz-1]);
+                graph_dataset[i].edges.pop_back();
+                vd--;
+                sz--;
+                e--;                 
+            }
+        }
+
     }
 }
 
@@ -242,7 +280,7 @@ void addEdge(vector<Graph> &graph_dataset,int i,int maxV,int ged)
                         graph_dataset[i].vertexdeg[graph_dataset[i].vertices[p]]++;
                         graph_dataset[i].vertexdeg[graph_dataset[i].vertices[q]]++;
                         auto posa = graph_dataset[i].s.find(graph_dataset[i].vertices[p]);
-                        if(posa != graph_dataset[i].s.end())
+                      /*  if(posa != graph_dataset[i].s.end())
                         {
                             graph_dataset[i].s.erase(graph_dataset[i].vertices[p]);
                         }
@@ -250,7 +288,7 @@ void addEdge(vector<Graph> &graph_dataset,int i,int maxV,int ged)
                         if(pos != graph_dataset[i].s.end())
                         {
                                 graph_dataset[i].s.erase(graph_dataset[i].vertices[q]);
-                        }
+                        }*/
                     }
                     else attempts++;
             
@@ -282,14 +320,14 @@ void delEdge(vector<Graph> &graph_dataset,int i,int maxV,int ged)
        graph_dataset[i].edges.erase(graph_dataset[i].edges.begin()+p);
        graph_dataset[i].vertexdeg[fir]--;
        graph_dataset[i].vertexdeg[seco]--;
-       if(graph_dataset[i].vertexdeg[fir] == 0)
+      /* if(graph_dataset[i].vertexdeg[fir] == 0)
        {
            graph_dataset[i].s.insert(fir);
        }
        if(graph_dataset[i].vertexdeg[seco] == 0)
        {
            graph_dataset[i].s.insert(fir);
-       }
+       }*/
 
        ecount--;
     }
@@ -326,3 +364,50 @@ void writeToFile(unsigned gno, unsigned gid, ofstream &duplicates_file,vector<Gr
         duplicates_file << "e " << edg.first <<" "<< edg.second <<endl;
 
 }
+
+void ConnectedComponents(int i, vector<Graph> &graph_dataset){
+
+	unordered_map<unsigned, vector<unsigned>> adjacency_list;
+	vector<unsigned> node_list = graph_dataset[i].vertices;
+
+	for(auto edge : graph_dataset[i].edges)
+	{
+		adjacency_list[edge.first].push_back(edge.second);
+		adjacency_list[edge.second].push_back(edge.first);
+	}
+
+
+	unordered_map<unsigned,bool> visited;
+	vector<unsigned> to_be_connected;  // will contain first node from every component which we will connect
+	int count=0;
+
+    for (auto v : node_list) {
+        if (visited.find(v) == visited.end() or visited[v]==false) {
+            // print all reachable vertices
+            // from v
+			to_be_connected.push_back(v);
+            DFSUtil(v, visited, adjacency_list);
+			count++;
+           // cout << "\n";
+        }
+    }
+	cout<<i<<" "<<count<<"\n";
+	for(int j = 1; j<to_be_connected.size(); j++){		// will run only when more than 1 component
+		graph_dataset[i].edges.push_back({to_be_connected[j-1], to_be_connected[j]});
+	}
+
+}
+
+void DFSUtil(int v, unordered_map<unsigned,bool> &visited, unordered_map<unsigned, vector<unsigned>> &adjacency_list)
+{
+    // Mark the current node as visited and print it
+    visited[v] = true;
+    //cout << v << " ";
+ 
+    // Recur for all the vertices
+    // adjacent to this vertex
+    for (auto i = adjacency_list[v].begin(); i != adjacency_list[v].end(); ++i)
+        if (visited.find(*i)==visited.end() or visited[*i]==false)
+            DFSUtil(*i, visited, adjacency_list);
+}
+

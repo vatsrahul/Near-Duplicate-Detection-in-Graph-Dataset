@@ -10,6 +10,7 @@ After discussio with sir, came to know this will happen when >90% edges,  but we
 
 Above problem solved by linearly choosing vertex. For edges i still prefer not to do any edit. (as it wud be n^2).
 
+**Max vertex taken = 30**
 
 **From data file some graphs randomly will be modified (based on modifications file) and then written in dupicates file. Graph id for duplicates are generated sequentially further. So u need to just copy duplicates.txt in last of data.txt after running below 2 commands. REMEBER TO CAHNGE TOTAL NO OF GRAPHS AT TOP.**
 

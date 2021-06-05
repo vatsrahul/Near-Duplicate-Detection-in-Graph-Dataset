@@ -25,6 +25,7 @@ void Graph:: readGraph(istream &inp){
 		inp >> tag >> vid; // the tag 'v' along with the vertex-id
 		vertices[vtx_ind] = vid;
 		vid_to_ind[vid] = vtx_ind; // mapping vertex-id to its index
+		s.insert(vid);
 	}
 	for(int e_ind = 0; e_ind < edgeCount; e_ind++)
 	{
