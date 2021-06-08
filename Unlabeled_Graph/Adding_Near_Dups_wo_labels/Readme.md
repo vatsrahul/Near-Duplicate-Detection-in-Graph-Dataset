@@ -14,6 +14,49 @@ Above problem solved by linearly choosing vertex. For edges i still prefer not t
 
 **From data file some graphs randomly will be modified (based on modifications file) and then written in dupicates file. Graph id for duplicates are generated sequentially further. So u need to just copy duplicates.txt in last of data.txt after running below 2 commands. REMEBER TO CAHNGE TOTAL NO OF GRAPHS AT TOP.**
 
+modifications.txt for :
+
+2k
+10
+20 1
+20 2
+20 3
+20 4
+20 5
+20 6
+20 7
+20 8
+20 9
+20 10
+
+5k
+10
+40 1
+40 2
+40 3
+40 4
+40 5
+30 6
+30 7
+30 8
+30 9
+30 10
+
+10k
+10
+50 1
+50 2
+50 3
+50 4
+50 5
+50 6
+50 7
+50 8
+50 9
+50 10
+
+
+
 **compile** : g++ duplicatGraphsGeneration.cpp  -o GraphGeneration
 
 **run** : ./GraphGeneration dataset.txt modifications.txt duplicates.txt

@@ -90,7 +90,7 @@ int main(int argc, char const *argv[])
 	    {   
             int victimGraphNo = getRandomGraphNo(NGraphs); //Select a random Graph Number  (1 based)
 
-            int randomoper = getRandomOperations(nop); //Select a random operation that has to be made to the given graph 
+            int randomoper = 3;//getRandomOperations(nop); //Select a random operation that has to be made to the given graph 
 
             cout << j<<" "<<victimGraphNo << " ";
             cout << randomoper << '\n';
