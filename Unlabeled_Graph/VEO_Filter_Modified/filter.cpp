@@ -49,24 +49,34 @@ void printingAndWritingInitialStatistics(int choice,double simScore_threshold,in
 	stat_file.close();
 }
 
-void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsigned long strictCount,unsigned long PrefixFilterCount,bool isBucket,unsigned long PositioningFilterCount,unsigned long SuffixFilterCount,bool mismatch,unsigned long mismatchCount,unsigned long simPairCount,int totalTimeTaken,const string res_dir,vector<long long int>& global_score_freq,unordered_map<unsigned, vector<pair<unsigned, double>>>& g_res)
+void printingAndWritingFinalStatistics(double simScore_threshold,int choice,unsigned long looseCount,unsigned long strictCount,unsigned long PrefixFilterCount,bool isBucket,unsigned long PositioningFilterCount,unsigned long SuffixFilterCount,bool mismatch,unsigned long mismatchCount,unsigned long simPairCount,int totalTimeTaken,const string res_dir,vector<long long int>& global_score_freq,unordered_map<unsigned, vector<pair<unsigned, double>>>& g_res)
 {
     // Displaying stat file...
+	unsigned CandidatePairs;
 	if(choice >= 1)
+	{
 		cout << "Loose Filter Count: " << looseCount << endl;
+		CandidatePairs = looseCount;
+	}
 	if(choice >= 2)
+	{
 		cout << "Strict Filter Count: " << strictCount << endl;
+		CandidatePairs = strictCount;
+	}
 	if(choice >= 3)
 	{
 		cout << "Prefix Filter Count: " << PrefixFilterCount << endl;
+		CandidatePairs = PrefixFilterCount;
 	}
 	if(choice >= 4)
 	{
 		cout << "Positioning Filter Count: " << PositioningFilterCount << endl;
+		CandidatePairs = PositioningFilterCount;
 	}
 	if(choice >= 5)
 	{
 		cout << "Suffix Filter Count: " << SuffixFilterCount << endl;
+		CandidatePairs = SuffixFilterCount;
 	}
 	
 	if(mismatch)
@@ -123,6 +133,19 @@ void printingAndWritingFinalStatistics(int choice,unsigned long looseCount,unsig
 		}
 	}
 	all_graph_file.close();
+
+
+
+	// writing results in csv file
+
+	ofstream stats("csv_file.csv", ios::app);
+	//stat_file.open("csv_file.txt", ios::binary | std::ios_base::app);
+	
+	stats << totalTimeTaken << ", " <<CandidatePairs << ", " << ", ";
+	if(simScore_threshold == 100)
+		stats <<"\n\n";
+
+	//stat_file.close();
 
 }
 
@@ -330,7 +353,7 @@ chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::n
 	chrono::high_resolution_clock::time_point cl2 = chrono::high_resolution_clock::now();
 	int totalTimeTaken = (clocksTosec(cl0,cl2));
 
-    printingAndWritingFinalStatistics(choice,looseCount,strictCount,PrefixFilterCount,isBucket,PositioningFilterCount,SuffixFilterCount,mismatch,mismatchCount,simPairCount,totalTimeTaken,res_dir,global_score_freq,g_res);
+    printingAndWritingFinalStatistics(simScore_threshold,choice,looseCount,strictCount,PrefixFilterCount,isBucket,PositioningFilterCount,SuffixFilterCount,mismatch,mismatchCount,simPairCount,totalTimeTaken,res_dir,global_score_freq,g_res);
 
 	return 0;
 }
