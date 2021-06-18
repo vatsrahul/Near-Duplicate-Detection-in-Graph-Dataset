@@ -3,9 +3,9 @@
  // adds an edge to the graph
 void Graph:: pushEdge(unsigned src_vtx,unsigned dest_vtx){		//LABELS ARE PUSHED HERE....
 	if(src_vtx > dest_vtx)
-		this->edges.push_back(make_pair(src_vtx, dest_vtx));
+		this->edges.push_back(src_vtx*101 + dest_vtx);
 	else 
-		this->edges.push_back(make_pair(dest_vtx, src_vtx));
+		this->edges.push_back(dest_vtx*101 + src_vtx);
 }
 
 // reads the graph from input file 
@@ -20,11 +20,12 @@ void Graph:: readGraph(istream &inp){
 	
 	unsigned ind = 0;
 	unsigned vid, src_vtx, dest_vtx;
-	char vc,sc,dc;  //Vertex type -- vc 
+	unsigned vc,sc,dc;  //Vertex type -- vc 
 	for(int vtx_ind=0; vtx_ind < vertexCount; vtx_ind++)
 	{
 		// each line for each vertex should be in the format like: "v vid(unsigned int)"
 		inp >> tag >> vid >> vc; // the tag 'v' along with the vertex-id
+		
 		vertices[vtx_ind] = vid;
 		vid_to_ind[vid] = vtx_ind; // mapping vertex-id to its index
 		vid_to_vc[vid] = vc;
@@ -50,7 +51,7 @@ void Graph::displayGraph()
 	}
 	for(int edg_ind = 0; edg_ind<edgeCount; edg_ind++)
 	{
-		cout << "e" << edg_ind << ": " << edges[edg_ind].first << " " << edges[edg_ind].second << endl;
+		cout << "e" << edg_ind << ": " << edges[edg_ind]/101 << " " << edges[edg_ind]%101 << endl;
 	}
 }
 

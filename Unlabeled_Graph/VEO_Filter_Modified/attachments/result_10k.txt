@@ -1,0 +1,1721 @@
+g++ -std=c++14 filter.cpp veo.cpp graph.cpp -o filter
+for N in `seq 80 1 100` ; do \
+	./filter ./dataset/data_10k.txt 1 $N 10482 stat_10k;  \
+done; \
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 80
+Dataset Size: 10482
+ubound: 1.5
+Loose Filter Count: 40148136
+Final Similar Pair Count: 484
+Memory used: 22.8672 MB
+Total Time Taken: 73244 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 81
+Dataset Size: 10482
+ubound: 1.46914
+Loose Filter Count: 38420400
+Final Similar Pair Count: 482
+Memory used: 22.8438 MB
+Total Time Taken: 68341 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 82
+Dataset Size: 10482
+ubound: 1.43902
+Loose Filter Count: 36785454
+Final Similar Pair Count: 479
+Memory used: 22.8633 MB
+Total Time Taken: 64880 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 83
+Dataset Size: 10482
+ubound: 1.40964
+Loose Filter Count: 35179728
+Final Similar Pair Count: 479
+Memory used: 22.8242 MB
+Total Time Taken: 61866 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 84
+Dataset Size: 10482
+ubound: 1.38095
+Loose Filter Count: 33567722
+Final Similar Pair Count: 476
+Memory used: 22.7188 MB
+Total Time Taken: 59062 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 85
+Dataset Size: 10482
+ubound: 1.35294
+Loose Filter Count: 31911681
+Final Similar Pair Count: 472
+Memory used: 22.9023 MB
+Total Time Taken: 56440 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 86
+Dataset Size: 10482
+ubound: 1.32558
+Loose Filter Count: 30185048
+Final Similar Pair Count: 461
+Memory used: 22.7188 MB
+Total Time Taken: 53221 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 87
+Dataset Size: 10482
+ubound: 1.29885
+Loose Filter Count: 28202830
+Final Similar Pair Count: 450
+Memory used: 22.7461 MB
+Total Time Taken: 49984 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 88
+Dataset Size: 10482
+ubound: 1.27273
+Loose Filter Count: 26350239
+Final Similar Pair Count: 441
+Memory used: 22.8672 MB
+Total Time Taken: 46625 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 89
+Dataset Size: 10482
+ubound: 1.24719
+Loose Filter Count: 24266494
+Final Similar Pair Count: 420
+Memory used: 22.793 MB
+Total Time Taken: 42508 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 90
+Dataset Size: 10482
+ubound: 1.22222
+Loose Filter Count: 22478608
+Final Similar Pair Count: 395
+Memory used: 22.8594 MB
+Total Time Taken: 39762 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 91
+Dataset Size: 10482
+ubound: 1.1978
+Loose Filter Count: 20130603
+Final Similar Pair Count: 356
+Memory used: 22.7695 MB
+Total Time Taken: 36153 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 92
+Dataset Size: 10482
+ubound: 1.17391
+Loose Filter Count: 18150684
+Final Similar Pair Count: 310
+Memory used: 22.6562 MB
+Total Time Taken: 32430 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 93
+Dataset Size: 10482
+ubound: 1.15054
+Loose Filter Count: 15933441
+Final Similar Pair Count: 265
+Memory used: 22.7617 MB
+Total Time Taken: 28374 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 94
+Dataset Size: 10482
+ubound: 1.12766
+Loose Filter Count: 13656329
+Final Similar Pair Count: 222
+Memory used: 22.7891 MB
+Total Time Taken: 24449 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 95
+Dataset Size: 10482
+ubound: 1.10526
+Loose Filter Count: 11456523
+Final Similar Pair Count: 170
+Memory used: 22.7891 MB
+Total Time Taken: 20930 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 96
+Dataset Size: 10482
+ubound: 1.08333
+Loose Filter Count: 9340510
+Final Similar Pair Count: 143
+Memory used: 22.8125 MB
+Total Time Taken: 16629 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 97
+Dataset Size: 10482
+ubound: 1.06186
+Loose Filter Count: 6935610
+Final Similar Pair Count: 93
+Memory used: 22.6875 MB
+Total Time Taken: 12352 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 98
+Dataset Size: 10482
+ubound: 1.04082
+Loose Filter Count: 4725732
+Final Similar Pair Count: 62
+Memory used: 22.8633 MB
+Total Time Taken: 8193 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 99
+Dataset Size: 10482
+ubound: 1.0202
+Loose Filter Count: 1834800
+Final Similar Pair Count: 9
+Memory used: 22.7305 MB
+Total Time Taken: 3361 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 1
+Similarity Score Threshold: 100
+Dataset Size: 10482
+ubound: 1
+Loose Filter Count: 1510340
+Final Similar Pair Count: 0
+Memory used: 22.8242 MB
+Total Time Taken: 2551 milliseconds
+
+for N in `seq 80 1 100` ; do \
+	./filter ./dataset/data_10k.txt 2 $N 0 10482 stat_10k;  \
+done; \
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 80
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.5
+Loose Filter Count: 40148136
+Strict Filter Count: 40131166
+Final Similar Pair Count: 484
+Memory used: 22.8867 MB
+Total Time Taken: 72966 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 81
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.46914
+Loose Filter Count: 38420400
+Strict Filter Count: 38389439
+Final Similar Pair Count: 482
+Memory used: 22.6641 MB
+Total Time Taken: 70566 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 82
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.43902
+Loose Filter Count: 36785454
+Strict Filter Count: 36733133
+Final Similar Pair Count: 479
+Memory used: 22.8789 MB
+Total Time Taken: 66495 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 83
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.40964
+Loose Filter Count: 35179728
+Strict Filter Count: 35064066
+Final Similar Pair Count: 479
+Memory used: 22.7969 MB
+Total Time Taken: 64466 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 84
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.38095
+Loose Filter Count: 33567722
+Strict Filter Count: 33402350
+Final Similar Pair Count: 476
+Memory used: 22.7031 MB
+Total Time Taken: 58722 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 85
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.35294
+Loose Filter Count: 31911681
+Strict Filter Count: 31653260
+Final Similar Pair Count: 472
+Memory used: 22.8242 MB
+Total Time Taken: 55824 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 86
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.32558
+Loose Filter Count: 30185048
+Strict Filter Count: 29849778
+Final Similar Pair Count: 461
+Memory used: 22.8242 MB
+Total Time Taken: 52438 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 87
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.29885
+Loose Filter Count: 28202830
+Strict Filter Count: 27734745
+Final Similar Pair Count: 450
+Memory used: 22.8516 MB
+Total Time Taken: 48914 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 88
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.27273
+Loose Filter Count: 26350239
+Strict Filter Count: 25758347
+Final Similar Pair Count: 441
+Memory used: 22.6953 MB
+Total Time Taken: 45411 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 89
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.24719
+Loose Filter Count: 24266494
+Strict Filter Count: 23542927
+Final Similar Pair Count: 420
+Memory used: 22.8789 MB
+Total Time Taken: 41761 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 90
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.22222
+Loose Filter Count: 22478608
+Strict Filter Count: 21563955
+Final Similar Pair Count: 395
+Memory used: 22.7969 MB
+Total Time Taken: 38141 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 91
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.1978
+Loose Filter Count: 20130603
+Strict Filter Count: 19067296
+Final Similar Pair Count: 356
+Memory used: 22.875 MB
+Total Time Taken: 34014 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 92
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.17391
+Loose Filter Count: 18150684
+Strict Filter Count: 16870637
+Final Similar Pair Count: 310
+Memory used: 22.7773 MB
+Total Time Taken: 30398 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 93
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.15054
+Loose Filter Count: 15933441
+Strict Filter Count: 14429201
+Final Similar Pair Count: 265
+Memory used: 22.8398 MB
+Total Time Taken: 26278 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 94
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.12766
+Loose Filter Count: 13656329
+Strict Filter Count: 11943743
+Final Similar Pair Count: 222
+Memory used: 22.6797 MB
+Total Time Taken: 21622 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 95
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.10526
+Loose Filter Count: 11456523
+Strict Filter Count: 9548102
+Final Similar Pair Count: 170
+Memory used: 22.7422 MB
+Total Time Taken: 17421 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 96
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.08333
+Loose Filter Count: 9340510
+Strict Filter Count: 7140833
+Final Similar Pair Count: 143
+Memory used: 22.8047 MB
+Total Time Taken: 13130 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 97
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.06186
+Loose Filter Count: 6935610
+Strict Filter Count: 4621127
+Final Similar Pair Count: 93
+Memory used: 22.6602 MB
+Total Time Taken: 8471 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 98
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.04082
+Loose Filter Count: 4725732
+Strict Filter Count: 2620807
+Final Similar Pair Count: 62
+Memory used: 22.8594 MB
+Total Time Taken: 4775 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 99
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.0202
+Loose Filter Count: 1834800
+Strict Filter Count: 827609
+Final Similar Pair Count: 9
+Memory used: 22.7227 MB
+Total Time Taken: 1597 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 2
+Similarity Score Threshold: 100
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1
+Loose Filter Count: 1510340
+Strict Filter Count: 589804
+Final Similar Pair Count: 0
+Memory used: 22.8945 MB
+Total Time Taken: 1043 milliseconds
+
+for N in `seq 80 1 100` ; do \
+	./filter ./dataset/data_10k.txt 3 $N 0 0 10482 stat_10k;  \
+done; \
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 80
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.5
+Loose Filter Count: 40148136
+Strict Filter Count: 40131166
+Prefix Filter Count: 38745388
+Final Similar Pair Count: 484
+Memory used: 31.8125 MB
+Total Time Taken: 118688 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 81
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.46914
+Loose Filter Count: 38420400
+Strict Filter Count: 38389439
+Prefix Filter Count: 36853256
+Final Similar Pair Count: 482
+Memory used: 31.6992 MB
+Total Time Taken: 110341 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 82
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.43902
+Loose Filter Count: 36785454
+Strict Filter Count: 36733133
+Prefix Filter Count: 35095804
+Final Similar Pair Count: 479
+Memory used: 31.6602 MB
+Total Time Taken: 102348 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 83
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.40964
+Loose Filter Count: 35179728
+Strict Filter Count: 35064066
+Prefix Filter Count: 33320731
+Final Similar Pair Count: 479
+Memory used: 31.5078 MB
+Total Time Taken: 96789 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 84
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.38095
+Loose Filter Count: 33567722
+Strict Filter Count: 33402350
+Prefix Filter Count: 31514141
+Final Similar Pair Count: 476
+Memory used: 31.4453 MB
+Total Time Taken: 89751 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 85
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.35294
+Loose Filter Count: 31911681
+Strict Filter Count: 31653260
+Prefix Filter Count: 29658834
+Final Similar Pair Count: 472
+Memory used: 31.2656 MB
+Total Time Taken: 82487 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 86
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.32558
+Loose Filter Count: 30185048
+Strict Filter Count: 29849778
+Prefix Filter Count: 27722137
+Final Similar Pair Count: 461
+Memory used: 30.9414 MB
+Total Time Taken: 76810 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 87
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.29885
+Loose Filter Count: 28202830
+Strict Filter Count: 27734745
+Prefix Filter Count: 25463960
+Final Similar Pair Count: 450
+Memory used: 30.7578 MB
+Total Time Taken: 69457 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 88
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.27273
+Loose Filter Count: 26350239
+Strict Filter Count: 25758347
+Prefix Filter Count: 23376896
+Final Similar Pair Count: 441
+Memory used: 30.6133 MB
+Total Time Taken: 62386 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 89
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.24719
+Loose Filter Count: 24266494
+Strict Filter Count: 23542927
+Prefix Filter Count: 21010161
+Final Similar Pair Count: 420
+Memory used: 30.7227 MB
+Total Time Taken: 54854 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 90
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.22222
+Loose Filter Count: 22478608
+Strict Filter Count: 21563955
+Prefix Filter Count: 18940567
+Final Similar Pair Count: 395
+Memory used: 30.4805 MB
+Total Time Taken: 49020 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 91
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.1978
+Loose Filter Count: 20130603
+Strict Filter Count: 19067296
+Prefix Filter Count: 16341900
+Final Similar Pair Count: 356
+Memory used: 30.1836 MB
+Total Time Taken: 41787 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 92
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.17391
+Loose Filter Count: 18150684
+Strict Filter Count: 16870637
+Prefix Filter Count: 14089840
+Final Similar Pair Count: 310
+Memory used: 29.9961 MB
+Total Time Taken: 36255 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 93
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.15054
+Loose Filter Count: 15933441
+Strict Filter Count: 14429201
+Prefix Filter Count: 11660817
+Final Similar Pair Count: 265
+Memory used: 29.9102 MB
+Total Time Taken: 29588 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 94
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.12766
+Loose Filter Count: 13656329
+Strict Filter Count: 11943743
+Prefix Filter Count: 9232061
+Final Similar Pair Count: 222
+Memory used: 29.6953 MB
+Total Time Taken: 23400 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 95
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.10526
+Loose Filter Count: 11456523
+Strict Filter Count: 9548102
+Prefix Filter Count: 7002116
+Final Similar Pair Count: 170
+Memory used: 29.3164 MB
+Total Time Taken: 17734 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 96
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.08333
+Loose Filter Count: 9340510
+Strict Filter Count: 7140833
+Prefix Filter Count: 4919519
+Final Similar Pair Count: 143
+Memory used: 29.3672 MB
+Total Time Taken: 12568 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 97
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.06186
+Loose Filter Count: 6935610
+Strict Filter Count: 4621127
+Prefix Filter Count: 2894845
+Final Similar Pair Count: 93
+Memory used: 28.9727 MB
+Total Time Taken: 7630 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 98
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.04082
+Loose Filter Count: 4725732
+Strict Filter Count: 2620807
+Prefix Filter Count: 1413328
+Final Similar Pair Count: 62
+Memory used: 28.9531 MB
+Total Time Taken: 3852 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 99
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.0202
+Loose Filter Count: 1834800
+Strict Filter Count: 827609
+Prefix Filter Count: 376718
+Final Similar Pair Count: 9
+Memory used: 28.625 MB
+Total Time Taken: 1111 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 3
+Similarity Score Threshold: 100
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1
+Loose Filter Count: 1510340
+Strict Filter Count: 589804
+Prefix Filter Count: 91970
+Final Similar Pair Count: 0
+Memory used: 28.3594 MB
+Total Time Taken: 299 milliseconds
+
+for N in `seq 80 1 100` ; do \
+	./filter ./dataset/data_10k.txt 4 $N 0 0 10482 stat_10k ; \
+done; \
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 80
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.5
+Loose Filter Count: 40148136
+Strict Filter Count: 40131166
+Prefix Filter Count: 38745388
+Positioning Filter Count: 2580009
+Final Similar Pair Count: 484
+Memory used: 31.8125 MB
+Total Time Taken: 61177 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 81
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.46914
+Loose Filter Count: 38420400
+Strict Filter Count: 38389439
+Prefix Filter Count: 36853256
+Positioning Filter Count: 2262881
+Final Similar Pair Count: 482
+Memory used: 31.6094 MB
+Total Time Taken: 55751 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 82
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.43902
+Loose Filter Count: 36785454
+Strict Filter Count: 36733133
+Prefix Filter Count: 35095804
+Positioning Filter Count: 2106750
+Final Similar Pair Count: 479
+Memory used: 31.7422 MB
+Total Time Taken: 52058 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 83
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.40964
+Loose Filter Count: 35179728
+Strict Filter Count: 35064066
+Prefix Filter Count: 33320731
+Positioning Filter Count: 1910827
+Final Similar Pair Count: 479
+Memory used: 31.3906 MB
+Total Time Taken: 47495 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 84
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.38095
+Loose Filter Count: 33567722
+Strict Filter Count: 33402350
+Prefix Filter Count: 31514141
+Positioning Filter Count: 1751065
+Final Similar Pair Count: 476
+Memory used: 31.3828 MB
+Total Time Taken: 44369 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 85
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.35294
+Loose Filter Count: 31911681
+Strict Filter Count: 31653260
+Prefix Filter Count: 29658834
+Positioning Filter Count: 1559282
+Final Similar Pair Count: 472
+Memory used: 31.2656 MB
+Total Time Taken: 40347 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 86
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.32558
+Loose Filter Count: 30185048
+Strict Filter Count: 29849778
+Prefix Filter Count: 27722137
+Positioning Filter Count: 1405711
+Final Similar Pair Count: 461
+Memory used: 30.9336 MB
+Total Time Taken: 36550 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 87
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.29885
+Loose Filter Count: 28202830
+Strict Filter Count: 27734745
+Prefix Filter Count: 25463960
+Positioning Filter Count: 1284608
+Final Similar Pair Count: 450
+Memory used: 30.8281 MB
+Total Time Taken: 32720 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 88
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.27273
+Loose Filter Count: 26350239
+Strict Filter Count: 25758347
+Prefix Filter Count: 23376896
+Positioning Filter Count: 1177790
+Final Similar Pair Count: 441
+Memory used: 30.7617 MB
+Total Time Taken: 28719 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 89
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.24719
+Loose Filter Count: 24266494
+Strict Filter Count: 23542927
+Prefix Filter Count: 21010161
+Positioning Filter Count: 1069629
+Final Similar Pair Count: 420
+Memory used: 30.6758 MB
+Total Time Taken: 25646 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 90
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.22222
+Loose Filter Count: 22478608
+Strict Filter Count: 21563955
+Prefix Filter Count: 18940567
+Positioning Filter Count: 943944
+Final Similar Pair Count: 395
+Memory used: 30.5078 MB
+Total Time Taken: 22127 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 91
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.1978
+Loose Filter Count: 20130603
+Strict Filter Count: 19067296
+Prefix Filter Count: 16341900
+Positioning Filter Count: 843989
+Final Similar Pair Count: 356
+Memory used: 30.125 MB
+Total Time Taken: 19013 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 92
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.17391
+Loose Filter Count: 18150684
+Strict Filter Count: 16870637
+Prefix Filter Count: 14089840
+Positioning Filter Count: 740273
+Final Similar Pair Count: 310
+Memory used: 29.8242 MB
+Total Time Taken: 15656 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 93
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.15054
+Loose Filter Count: 15933441
+Strict Filter Count: 14429201
+Prefix Filter Count: 11660817
+Positioning Filter Count: 615331
+Final Similar Pair Count: 265
+Memory used: 29.8125 MB
+Total Time Taken: 12791 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 94
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.12766
+Loose Filter Count: 13656329
+Strict Filter Count: 11943743
+Prefix Filter Count: 9232061
+Positioning Filter Count: 533931
+Final Similar Pair Count: 222
+Memory used: 29.6328 MB
+Total Time Taken: 9963 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 95
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.10526
+Loose Filter Count: 11456523
+Strict Filter Count: 9548102
+Prefix Filter Count: 7002116
+Positioning Filter Count: 430347
+Final Similar Pair Count: 170
+Memory used: 29.3086 MB
+Total Time Taken: 7657 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 96
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.08333
+Loose Filter Count: 9340510
+Strict Filter Count: 7140833
+Prefix Filter Count: 4919519
+Positioning Filter Count: 305380
+Final Similar Pair Count: 143
+Memory used: 29.4688 MB
+Total Time Taken: 5368 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 97
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.06186
+Loose Filter Count: 6935610
+Strict Filter Count: 4621127
+Prefix Filter Count: 2894845
+Positioning Filter Count: 200845
+Final Similar Pair Count: 93
+Memory used: 28.8008 MB
+Total Time Taken: 3301 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 98
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.04082
+Loose Filter Count: 4725732
+Strict Filter Count: 2620807
+Prefix Filter Count: 1413328
+Positioning Filter Count: 115637
+Final Similar Pair Count: 62
+Memory used: 28.832 MB
+Total Time Taken: 1764 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 99
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1.0202
+Loose Filter Count: 1834800
+Strict Filter Count: 827609
+Prefix Filter Count: 376718
+Positioning Filter Count: 37940
+Final Similar Pair Count: 9
+Memory used: 28.5977 MB
+Total Time Taken: 526 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 4
+Similarity Score Threshold: 100
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 0
+ubound: 1
+Loose Filter Count: 1510340
+Strict Filter Count: 589804
+Prefix Filter Count: 91970
+Positioning Filter Count: 91970
+Final Similar Pair Count: 0
+Memory used: 28.375 MB
+Total Time Taken: 327 milliseconds
+
+for N in `seq 80 1 100` ; do \
+	./filter ./dataset/data_10k.txt 5 $N 0 20 10482 stat_10k ; \
+done;
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 80
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.5
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 40148136
+Strict Filter Count: 40131166
+Prefix Filter Count: 38745388
+Positioning Filter Count: 2580009
+Suffix Filter Count: 28766
+Final Similar Pair Count: 484
+Memory used: 33.4609 MB
+Total Time Taken: 56414 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 81
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.46914
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 38420400
+Strict Filter Count: 38389439
+Prefix Filter Count: 36853256
+Positioning Filter Count: 2262881
+Suffix Filter Count: 16924
+Final Similar Pair Count: 482
+Memory used: 33.125 MB
+Total Time Taken: 52251 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 82
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.43902
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 36785454
+Strict Filter Count: 36733133
+Prefix Filter Count: 35095804
+Positioning Filter Count: 2106750
+Suffix Filter Count: 10913
+Final Similar Pair Count: 479
+Memory used: 32.957 MB
+Total Time Taken: 48377 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 83
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.40964
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 35179728
+Strict Filter Count: 35064066
+Prefix Filter Count: 33320731
+Positioning Filter Count: 1910827
+Suffix Filter Count: 6734
+Final Similar Pair Count: 479
+Memory used: 33.1133 MB
+Total Time Taken: 44679 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 84
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.38095
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 33567722
+Strict Filter Count: 33402350
+Prefix Filter Count: 31514141
+Positioning Filter Count: 1751065
+Suffix Filter Count: 4104
+Final Similar Pair Count: 476
+Memory used: 32.8086 MB
+Total Time Taken: 40975 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 85
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.35294
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 31911681
+Strict Filter Count: 31653260
+Prefix Filter Count: 29658834
+Positioning Filter Count: 1559282
+Suffix Filter Count: 2571
+Final Similar Pair Count: 472
+Memory used: 32.7969 MB
+Total Time Taken: 37603 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 86
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.32558
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 30185048
+Strict Filter Count: 29849778
+Prefix Filter Count: 27722137
+Positioning Filter Count: 1405711
+Suffix Filter Count: 1507
+Final Similar Pair Count: 461
+Memory used: 32.5742 MB
+Total Time Taken: 34180 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 87
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.29885
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 28202830
+Strict Filter Count: 27734745
+Prefix Filter Count: 25463960
+Positioning Filter Count: 1284608
+Suffix Filter Count: 998
+Final Similar Pair Count: 450
+Memory used: 32.2188 MB
+Total Time Taken: 30348 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 88
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.27273
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 26350239
+Strict Filter Count: 25758347
+Prefix Filter Count: 23376896
+Positioning Filter Count: 1177790
+Suffix Filter Count: 733
+Final Similar Pair Count: 441
+Memory used: 32.2617 MB
+Total Time Taken: 27086 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 89
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.24719
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 24266494
+Strict Filter Count: 23542927
+Prefix Filter Count: 21010161
+Positioning Filter Count: 1069629
+Suffix Filter Count: 563
+Final Similar Pair Count: 420
+Memory used: 31.9297 MB
+Total Time Taken: 23537 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 90
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.22222
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 22478608
+Strict Filter Count: 21563955
+Prefix Filter Count: 18940567
+Positioning Filter Count: 943944
+Suffix Filter Count: 455
+Final Similar Pair Count: 395
+Memory used: 31.6875 MB
+Total Time Taken: 20518 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 91
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.1978
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 20130603
+Strict Filter Count: 19067296
+Prefix Filter Count: 16341900
+Positioning Filter Count: 843989
+Suffix Filter Count: 377
+Final Similar Pair Count: 356
+Memory used: 31.7109 MB
+Total Time Taken: 17110 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 92
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.17391
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 18150684
+Strict Filter Count: 16870637
+Prefix Filter Count: 14089840
+Positioning Filter Count: 740273
+Suffix Filter Count: 324
+Final Similar Pair Count: 310
+Memory used: 31.3516 MB
+Total Time Taken: 14433 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 93
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.15054
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 15933441
+Strict Filter Count: 14429201
+Prefix Filter Count: 11660817
+Positioning Filter Count: 615331
+Suffix Filter Count: 270
+Final Similar Pair Count: 265
+Memory used: 31.2344 MB
+Total Time Taken: 11723 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 94
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.12766
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 13656329
+Strict Filter Count: 11943743
+Prefix Filter Count: 9232061
+Positioning Filter Count: 533931
+Suffix Filter Count: 223
+Final Similar Pair Count: 222
+Memory used: 31.1523 MB
+Total Time Taken: 9089 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 95
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.10526
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 11456523
+Strict Filter Count: 9548102
+Prefix Filter Count: 7002116
+Positioning Filter Count: 430347
+Suffix Filter Count: 170
+Final Similar Pair Count: 170
+Memory used: 30.8984 MB
+Total Time Taken: 6750 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 96
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.08333
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 9340510
+Strict Filter Count: 7140833
+Prefix Filter Count: 4919519
+Positioning Filter Count: 305380
+Suffix Filter Count: 143
+Final Similar Pair Count: 143
+Memory used: 30.75 MB
+Total Time Taken: 4875 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 97
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.06186
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 6935610
+Strict Filter Count: 4621127
+Prefix Filter Count: 2894845
+Positioning Filter Count: 200845
+Suffix Filter Count: 93
+Final Similar Pair Count: 93
+Memory used: 30.5273 MB
+Total Time Taken: 2999 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 98
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.04082
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 4725732
+Strict Filter Count: 2620807
+Prefix Filter Count: 1413328
+Positioning Filter Count: 115637
+Suffix Filter Count: 62
+Final Similar Pair Count: 62
+Memory used: 30.4023 MB
+Total Time Taken: 1566 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 99
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1.0202
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 1834800
+Strict Filter Count: 827609
+Prefix Filter Count: 376718
+Positioning Filter Count: 37940
+Suffix Filter Count: 9
+Final Similar Pair Count: 9
+Memory used: 30.1797 MB
+Total Time Taken: 451 milliseconds
+
+Graph Dataset parsed.
+Graph Dataset sorted.
+GSimJoin: VEO Similarity(filters)
+Choice: 5
+Similarity Score Threshold: 100
+Dataset Size: 10482
+Mismatch: 0
+No of Buckets: 20
+ubound: 1
+Max rank is 121
+no_of_buckets is 20
+buckets size 7
+Loose Filter Count: 1510340
+Strict Filter Count: 589804
+Prefix Filter Count: 91970
+Positioning Filter Count: 91970
+Suffix Filter Count: 0
+Final Similar Pair Count: 0
+Memory used: 30.0117 MB
+Total Time Taken: 196 milliseconds
+

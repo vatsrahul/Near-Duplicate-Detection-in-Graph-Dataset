@@ -41,18 +41,17 @@ double intersection_vertices(vector<unsigned> &s1, vector<unsigned> &s2,unsigned
 }
 
 // Intersection of edge lists of 2 graphs
-double intersection_edges(vector<pair<unsigned, unsigned>> &s1, vector<pair<unsigned, unsigned>> &s2,unsigned gid1,unsigned gid2,Graph &g1,Graph &g2)
+double intersection_edges(vector<unsigned> &s1, vector<unsigned> &s2,unsigned gid1,unsigned gid2,Graph &g1,Graph &g2)
 {
 	unsigned s1_iter = 0;
 	unsigned s2_iter = 0;
 	double common = 0;
 
-
-	for(auto s1_iter = s1.begin(), s2_iter = s2.begin(); s1_iter != s1.end() && s2_iter != s2.end(); )
+	while(s1_iter < s1.size() && s2_iter < s2.size())
 	{
-		if(edgeComp(*s1_iter,*s2_iter,g1,g2))
+		if(s1[s1_iter] < s2[s2_iter])
 			s1_iter++;
-		else if(edgeComp(*s2_iter,*s1_iter,g1,g2))
+		else if(s1[s1_iter] > s2[s2_iter])
 			s2_iter++;
 		else
 		{
@@ -62,6 +61,7 @@ double intersection_edges(vector<pair<unsigned, unsigned>> &s1, vector<pair<unsi
 			common++;		
 		}
 	}
+
 	return common;
 }
 
@@ -72,8 +72,8 @@ double computeSimilarity(Graph &g1, Graph &g2, double &commonV)
 		commonV = intersection_vertices(g1.vertices, g2.vertices,g1.gid,g2.gid,g1,g2);
 	commonV+=intersection_edges(g1.edges, g2.edges,g1.gid,g2.gid,g1,g2);
 
-	//cout << commonV;
-	
+//	cout << commonV << " "<<g1.vertexCount+g2.vertexCount+g1.edgeCount+g2.edgeCount<<"\n";
+
 	double simScore = (double)(200.0*(commonV)/(double)(g1.vertexCount+g2.vertexCount+g1.edgeCount+g2.edgeCount));
 
 	return simScore;

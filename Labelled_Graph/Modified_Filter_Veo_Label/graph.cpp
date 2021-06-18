@@ -23,12 +23,12 @@ void Graph:: readGraph(istream &inp){
 	
 	unsigned ind = 0;
 	unsigned vid, src_vtx, dest_vtx;
-	int vc,sc,dc;  //Vertex type -- vc 
+	unsigned vc,sc,dc;  //Vertex type -- vc 
 	for(int vtx_ind=0; vtx_ind < vertexCount; vtx_ind++)
 	{
 		// each line for each vertex should be in the format like: "v vid(unsigned int)"
 		inp >> tag >> vid >> vc; // the tag 'v' along with the vertex-id
-		vertices[vtx_ind] = (vc -'A');//vid;
+		vertices[vtx_ind] = (vc);//vid;
 		vid_to_ind[vid] = vtx_ind; // mapping vertex-id to its index
 		vid_to_vc[vid] = vc;
 	}
