@@ -18,7 +18,7 @@ class Graph
 		}
 
 		void readGraph(istream &inp); // reads the graph from input file 
-		void pushEdge(unsigned u, unsigned v); // adds an edge to the graph 
+		void pushEdge(unsigned u, unsigned v, unsigned ec); // adds an edge to the graph 
 		void displayGraph(); // prints details of the graph
 
 };

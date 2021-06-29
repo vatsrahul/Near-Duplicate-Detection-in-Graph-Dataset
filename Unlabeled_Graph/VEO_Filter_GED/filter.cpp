@@ -226,6 +226,7 @@ int main(int argc, char const *argv[])
 //////////////////////////////////////////////////////////////////////////////////
 cout<<GED<<" "<<min_size<<" @\n";
 	double simScore_threshold = (1.0*min_size)/(2*(1.0*min_size)+GED)*200.0;   ///////////// Converting GED to threshold
+	simScore_threshold = floor(simScore_threshold);
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -254,9 +255,10 @@ cout<<GED<<" "<<min_size<<" @\n";
 chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::now();
 
 ////////////////////////////////////////////////////////////
-	Preprocess_GED(argv[1], 4, 5);       /////// Preprocessing for GED with q-gram=4 and tau=5
+	Preprocess_GED(argv[1], 4, GED);       /////// Preprocessing for GED with q-gram=4 and tau=5
 ////////////////////////////////////////////////////////////
-
+	unordered_map<unsigned, unordered_map<unsigned, unsigned> > temp;
+	temp.clear();
 
 	for(int g1 = 0; g1 < graph_dataset.size(); g1++)
 	{
@@ -334,14 +336,19 @@ chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::n
 			if(!out)
 			{
 
-				int edit_dist = Get_GED(g1,g2);
-				if(edit_dist > GED)
-					continue;
+		
 
 				// naive computation of VEO similarity
 				simScore = veo_sim.computeSimilarity(graph_dataset[g1], graph_dataset[g2], common);
 				if(simScore >= simScore_threshold)
-				{
+				{//cout<<graph_dataset[g1].gid<<" "<<graph_dataset[g2].gid<<" ";
+				//simPairCount++;
+					int edit_dist = Get_GED(graph_dataset[g2].gid, graph_dataset[g1].gid);//cout<<edit_dist<<"\n";
+				if(edit_dist > GED)
+					continue;
+					temp[graph_dataset[g2].gid][graph_dataset[g1].gid]=2;
+					temp[graph_dataset[g1].gid][graph_dataset[g2].gid]=2;
+					
 					// Incrementing count... 
 					if(simScore==0.0)
 					{
@@ -366,6 +373,23 @@ chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::n
 			}
 		}
 	}
+	/* ifstream ifp("Gsim/2k-gsim45.txt");
+  
+int i,j,ged,cot=0;
+ long double mx=0.0, mn = 1.0,sum=0.0;
+
+          
+    while(ifp>>i and  ifp>>j and ifp>>ged){
+		//if((temp.find(i)!=temp.end() && temp[i],find(j)!=temp[i].end()))
+		if(temp[i][j]==2 and temp[j][i]==2)
+		{ cot++;}
+		else{
+			cout<<i<<" "<<j<<"\n";
+			cout<<"not found\n";
+			
+		}
+            
+        }cout<<"all matche "<<cot<<endl;*/
 
  	////////////////////////////////////////////////////////
 	 Clean_GED();							///////////////Cleaning the mem alloted.

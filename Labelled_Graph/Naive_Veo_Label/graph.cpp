@@ -1,11 +1,11 @@
 #include "graph.h"
 
  // adds an edge to the graph
-void Graph:: pushEdge(unsigned src_vtx,unsigned dest_vtx){		//LABELS ARE PUSHED HERE....
+void Graph:: pushEdge(unsigned src_vtx,unsigned dest_vtx, unsigned ec){		//LABELS ARE PUSHED HERE....
 	if(src_vtx > dest_vtx)
-		this->edges.push_back(src_vtx*101 + dest_vtx);
+		this->edges.push_back(src_vtx*101 + dest_vtx + ec);
 	else 
-		this->edges.push_back(dest_vtx*101 + src_vtx);
+		this->edges.push_back(dest_vtx*101 + src_vtx + ec);
 }
 
 // reads the graph from input file 
@@ -19,8 +19,8 @@ void Graph:: readGraph(istream &inp){
 	vertices.resize(vertexCount);
 	
 	unsigned ind = 0;
-	unsigned vid, src_vtx, dest_vtx;
-	unsigned vc,sc,dc;  //Vertex type -- vc 
+	unsigned vid, src_vtx, dest_vtx, ec;
+	char vc;  //Vertex type -- vc 
 	for(int vtx_ind=0; vtx_ind < vertexCount; vtx_ind++)
 	{
 		// each line for each vertex should be in the format like: "v vid(unsigned int)"
@@ -33,14 +33,14 @@ void Graph:: readGraph(istream &inp){
 	for(int e_ind = 0; e_ind < edgeCount; e_ind++)
 	{
 		// each line for each edge should be in the format like: "e vid_src(unsigned int) vid_dest(unsigned int)"
-		inp >> tag >> src_vtx >> sc >> dest_vtx >> dc; // the tag 'e' along with the source and destination vertex-ids
+		inp >> tag >> src_vtx >> dest_vtx >> ec; // the tag 'e' along with the source and destination vertex-ids
 		// Undirected graph : adding edge source to destination and destination to source
-		pushEdge(vid_to_vc[src_vtx], vid_to_vc[dest_vtx]);			//NOTICE LABEL IS PASSED
+		pushEdge(vid_to_vc[src_vtx], vid_to_vc[dest_vtx], ec);			//NOTICE LABEL IS PASSED
 	}
 }
 
 // prints details of the graph
-void Graph::displayGraph()
+/*void Graph::displayGraph()
 {
 	cout <<"g "<< gid << ":" << endl;
 	cout <<"Vertex Count: "<< vertexCount << endl;
@@ -53,5 +53,5 @@ void Graph::displayGraph()
 	{
 		cout << "e" << edg_ind << ": " << edges[edg_ind]/101 << " " << edges[edg_ind]%101 << endl;
 	}
-}
+}*/
 

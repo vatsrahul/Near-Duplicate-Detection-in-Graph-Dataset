@@ -68,7 +68,7 @@ public:
 class Graph_comp 
 {
 public:
-	bool operator() (const Graph1 &lg, const Graph1 &rg) const {
+	bool operator() (const Graph1 &lg, const Graph1 &rg) const {return (lg.vertex_num+lg.edge_num <rg.vertex_num+rg.edge_num);
 		if (lg.total_num == rg.total_num) {
 			if (lg.vertex_num == rg.vertex_num) {
 				if (lg.edge_num == rg.edge_num) return (lg.name < rg.name);

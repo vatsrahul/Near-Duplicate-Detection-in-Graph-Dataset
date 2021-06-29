@@ -17,6 +17,7 @@
 #include <iterator>
 #include <algorithm>
 #include <map>
+#include <unordered_map>
 
 #ifdef _DEBUG
 #include <cassert>

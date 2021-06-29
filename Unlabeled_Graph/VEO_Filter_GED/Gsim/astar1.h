@@ -167,7 +167,7 @@ inline void set_tau() {	tau = 4; }
 inline void reset_tau() { tau = 4; }
 
 inline int compute_rud_dist( Priority* pri, int& ans, bool filter_only = false ) {
-	if (filter_only) return 0;
+	if (filter_only) return OVER_BOUND;
 	//v_time.resume();
 	pri->init_astar();
 	int edist = rudim_edit_distance(pri);
@@ -186,9 +186,9 @@ inline int compute_rud_dist( Priority* pri, int& ans, bool filter_only = false )
 	return edist;
 }
 
-inline void compute_opt_dist( Priority* pri, int& ans, bool filter_only = false ) {
-	if (filter_only) return;
-	v_time.resume();
+inline int compute_opt_dist( Priority* pri, int& ans, bool filter_only = false ) {
+	if (filter_only) return OVER_BOUND;
+	//v_time.resume();
 	pri->init_astar();
 	int edist = filter_edit_distance(pri);
 	if (print_more)
@@ -199,5 +199,6 @@ inline void compute_opt_dist( Priority* pri, int& ans, bool filter_only = false 
 			cerr << pri->lgid << "(" << pri->lg->name << ") - " << pri->rgid << "(" << pri->rg->name << ") " << edist << " #" << nodes_expanded << endl;
 	}
 	pri->roll_back();
-	v_time.pause();
+	//v_time.pause();
+	return edist;
 }

@@ -43,9 +43,9 @@ char Graph1::read( istream& is, char prev_tag, set<int>& edge_label )
 				cerr << "program ignored the entry..." << endl; continue;
 			}
 
-			(*this)[i].push_edge(cnt, i, j, val);
-			(*this)[j].push_edge(cnt, j, i, val);
-			edge_label.insert(val++);
+			(*this)[i].push_edge(cnt, i, j, 11000);
+			(*this)[j].push_edge(cnt, j, i, 11000);
+			edge_label.insert(11000);
 			++ cnt;
 		} else {
 			cerr << "a possible erroneous entry at graph " << this->name << "!" << endl;
@@ -94,8 +94,8 @@ char Graph1::read( istream& is, char prev_tag )
 				cerr << "program ignored the entry..." << endl; continue;
 			}
 
-			(*this)[i].push_edge(cnt, i, j, val);
-			(*this)[j].push_edge(cnt, j, i, val++);
+			(*this)[i].push_edge(cnt, i, j, 11000);
+			(*this)[j].push_edge(cnt, j, i, 11000);
 			++ cnt;
 		} else {
 			cerr << "a possible erroneous entry at graph " << this->name << "!" << endl;

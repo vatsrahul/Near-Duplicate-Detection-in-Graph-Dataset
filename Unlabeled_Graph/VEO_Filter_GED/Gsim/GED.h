@@ -8,7 +8,7 @@ bool count_filter = true, min_edit_filter = true, local_lab_filter = true, deg_m
 bool filter_only = false, print_ans = false, print_more = false;
 
 // trivial data structure
-int tau = 2, over_tau = 3, qs = 5, path_qs = 9, under_qs = 4;
+int tau = 5, over_tau = 6, qs = 5, path_qs = 9, under_qs = 4;
 unsigned max_vnum;
 bool* done;
 
@@ -37,6 +37,7 @@ vector<unsigned>* vcnt;			// v-label counts
 vector<iter_graph>* git;
 Freq_comp fcomp(&path_freq);
 
+unordered_map<unsigned,unsigned> name_to_index;
 
 void Preprocess_GED(string p, int under_qs, int tau);
 int Get_GED(int i, int j);
@@ -110,6 +111,11 @@ void parse_data(char* file) {
 	gdb_size = gdb.size();
 	max_vnum = gdb.back().vertex_num;
 
+int c=0;
+	for(auto g: gdb){
+		name_to_index[g.name]=c++;
+	}
+
 #ifdef UNIX
 	path_freq.set_empty_key(0);
 	path_graph.set_empty_key(0);
@@ -176,7 +182,7 @@ void Clean_GED() {
 	cout << "\nDone..." << endl;
 	delete[] done;
 	for (unsigned i = 0; i != gdb.size(); ++ i) {
-		for (unsigned j = 0; j != pdb[i].size(); ++ j) {
+		/*for (unsigned j = 0; j != pdb[i].size(); ++ j) {
 			delete pdb[i][j];
 		}
 		for (unsigned j = 0; j != gdb[i].vertex_num; ++ j) {
@@ -185,7 +191,7 @@ void Clean_GED() {
 		delete[] eds[i];
 		delete[] hdb[i];
 		delete[] card[i];
-		delete[] tau_card[i];
+		delete[] tau_card[i];*/
 	}
 	delete[] global_elabs;
 	delete[] pdb;
@@ -202,19 +208,19 @@ void Clean_GED() {
 	delete[] git;
 }
 
-void Preprocess_GED(string p, int under_qs=4, int tau=5){
+void Preprocess_GED(string p, int under_qs_local=4, int tau_local=5){
 	char* pchar;
 	bool file_set = false, q_set = false, tau_set = false;
 	char dfile[256] = "gdb", qfile[256], comb;
 
 				strcpy(dfile, p.c_str());
 
-				//under_qs = 4;
+				under_qs = under_qs_local;
 				qs = under_qs + 1;
 				path_qs = (qs << 1) - 1;
 				q_set = true;
 
-				//tau = 5;
+				tau = tau_local;
 				over_tau = tau + 1;
 				tau_set = true;
 
@@ -255,21 +261,39 @@ void Preprocess_GED(string p, int under_qs=4, int tau=5){
 			print_more = false;
 			print_ans = true; 
 
+//run_min_prefix();
+//return;
 	vectorize_label();
-	//generate_all_path();
-	//count_all_path();	
-	//join_min_prefix_index();
+/*	generate_all_path();
+	count_all_path();	
+	join_min_prefix_index();
+
+	iter_graph temp;
+	for (iter_graph it = path_graph.begin(), end = path_graph.end(); it != end;) {
+		if (it->second.size() < 2) {
+			temp = it;
+			++ it;
+			path_graph.erase(temp);
+		} else {
+			for (set<unsigned>::const_iterator is = it->second.begin(), end = it->second.end(); is != end; ++ is) {
+				git[*is].push_back(it);
+			}
+			++ it;
+		}
+	}*/
+	//opt_order_join();
 
 }
 
 int Get_GED(int i, int j){
+
 			int ans;
 			ans=0;
 			Priority* pri; 
-			pri = new Priority(i,j);
-			//cout << pri->lgid << "(" << pri->lg->name << ") - " << pri->rgid << "(" << pri->rg->name << ") \n" ;
+			pri = new Priority(name_to_index[i],name_to_index[j]);
+			//cout << pri->lgid << "(" << pri->lg->name << ") - " << pri->rgid << "(" << pri->rg->name << ") " ;
 			
 			int Edit_dist = compute_rud_dist(pri, ans, false);
-
+			delete pri;
 	return Edit_dist;
 }

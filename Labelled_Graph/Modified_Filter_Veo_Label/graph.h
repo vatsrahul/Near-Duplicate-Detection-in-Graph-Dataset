@@ -19,7 +19,7 @@ class Graph
 		}
 
 		void readGraph(istream &inp);
-		void pushEdge(unsigned u, unsigned v);
+		void pushEdge(unsigned u, unsigned v, unsigned ec);
 		void displayGraph();
 };
 
