@@ -1,5 +1,6 @@
 #include "graph.h"
 
+
 void Vertex::push_edge( unsigned eid, unsigned from, unsigned to, int elabel )
 {
 	unsigned n = edges.size();
@@ -13,43 +14,37 @@ void Vertex::push_edge( unsigned eid, unsigned from, unsigned to, int elabel )
 char Graph::read( istream& is, char prev_tag, set<int>& edge_label )
 {
 	char tag = prev_tag;
-	unsigned i, j, k,x,y;
-	long long int val = 0;
-	map<unsigned,unsigned> mp;
-	mp.clear();
-	
-	if (tag == 'g') {
-		is >> x >> y >> i >> tag;
+	unsigned i, j, k;
+
+	if (tag == 't') {
+		is >> tag >> i >> tag;
 		this->name = i;
 	} else {
-		cerr << "ill-formated file ! 11" << tag <<" "<<i<< endl;
+		cerr << "ill-formated file!" << endl;
 		exit(1);
 	}
 
 	while (!is.eof() && (tag == 'v')) {
-		is >> i >> tag;
+		is >> i >> j >> tag;
 		this->resize(this->size()+1);
-		this->back().vlabel = i;
-		mp[i]=val++;
+		this->back().vlabel = j;
 	}
 	unsigned cnt = 0;
 	while (!is.eof() && (tag == 'e')) {
-		is >> i >> j >> tag;	// does not control redundancy
-		i = mp[i];
-		j = mp[j];
+		is >> i >> j >> k >> tag;	// does not control redundancy
 		if (i != j) {
 			if (i >= this->size() || j >= this->size()) {
 				cerr << "(" << i << ", " << j << ") - incorrect edge entry at graph " << this->name << "!" << endl;
 				cerr << "program ignored the entry..." << endl; continue;
 			}
 
-			(*this)[i].push_edge(cnt, i, j, 11000);
-			(*this)[j].push_edge(cnt, j, i, 11000);
-			edge_label.insert(11000);
+			(*this)[i].push_edge(cnt, i, j, k);
+			(*this)[j].push_edge(cnt, j, i, k);
+			edge_label.insert(k);
 			++ cnt;
 		} else {
 			cerr << "a possible erroneous entry at graph " << this->name << "!" << endl;
-			cerr << "program ignored the entry..." << i<<endl;
+			cerr << "program ignored the entry..." << endl;
 		}
 	}
 
@@ -67,35 +62,29 @@ char Graph::read( istream& is, char prev_tag, set<int>& edge_label )
 char Graph::read( istream& is, char prev_tag )
 {
 	char tag = prev_tag;
-	unsigned i, j, k,x,y;
-	long long int val = 0;
-	map<unsigned,unsigned> mp;
-	mp.clear();
-	
-	if (tag == 'g') {
-		is >> x >> y >> i >> tag;
+	unsigned i, j, k;
+
+	if (tag == 't') {
+		is >> tag >> i >> tag;
 		this->name = i;
 	}
 
 	while (!is.eof() && (tag == 'v')) {
-		is >> i >> tag;
+		is >> i >> j >> tag;
 		this->resize(this->size()+1);
-		this->back().vlabel = i;
-		mp[i]=val++;
+		this->back().vlabel = j;
 	}
 	unsigned cnt = 0;
 	while (!is.eof() && (tag == 'e')) {
-		is >> i >> j >> tag;	// does not control redundancy
-		i = mp[i];
-		j = mp[j];
+		is >> i >> j >> k >> tag;	// does not control redundancy
 		if (i != j) {
 			if (i >= this->size() || j >= this->size()) {
 				cerr << "(" << i << ", " << j << ") - incorrect edge entry at graph " << this->name << "!" << endl;
 				cerr << "program ignored the entry..." << endl; continue;
 			}
 
-			(*this)[i].push_edge(cnt, i, j, 11000);
-			(*this)[j].push_edge(cnt, j, i, 11000);
+			(*this)[i].push_edge(cnt, i, j, k);
+			(*this)[j].push_edge(cnt, j, i, k);
 			++ cnt;
 		} else {
 			cerr << "a possible erroneous entry at graph " << this->name << "!" << endl;

@@ -337,7 +337,7 @@ int main(int argc, char** argv)
 		case '0':
 			init_mem();
 			cout << "\n         Num = " << gdb_size << " Q = " << under_qs << " TAU = " << tau << " DB = " << dfile << endl;
-			if (min_edit_filter) {cout<<"This run\n";
+			if (min_edit_filter) {
 				run_min_prefix(); 
 			} else {
 				run_cnt_prefix();
@@ -360,11 +360,6 @@ int main(int argc, char** argv)
 			break;
 	}
 	
-
-	struct rusage r_usage;
-	getrusage(RUSAGE_SELF, &r_usage);
-	cout<<"Memory used : "<< r_usage.ru_maxrss/1024.0 << "MB"<< endl;
-
 	clean();
 	return 0;
 }

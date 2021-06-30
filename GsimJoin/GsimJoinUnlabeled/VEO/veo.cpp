@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#define DATASET 5500
+#define DATASET 18000
 
 int intersect(vector<int> a,vector<int> b){
     int n = a.size();
@@ -32,24 +32,24 @@ int main(){
     int u,v,e,idx;
     vector<vector<int>> gVertex(DATASET+1);
     vector<vector<int>> gEdges(DATASET+1); 
-    fp.open("../data/data_2k.txt");
+    fp.open("../data/input.db");
     while(fp>>c){
         switch(c){
-            case 'g': fp>>idx>>u>>t;
+            case 't': fp>>c>>t;
                       if(t>1){
                           sort(gVertex[t-1].begin(),gVertex[t-1].end());
                           sort(gEdges[t-1].begin(),gEdges[t-1].end());
                       }
                       break;
-            case 'v': fp>>v;
+            case 'v': fp>>u>>v;
                       gVertex[t].push_back(v);
                       break;
-            case 'e': fp>>u>>v;
-                      if(u< v){
-                          idx = (u-1)*100007 + v-1;
+            case 'e': fp>>u>>v>>e;
+                      if(gVertex[t][u] < gVertex[t][v]){
+                          idx = (gVertex[t][u]-1)*66 + gVertex[t][v]-1;
                       }
                       else{
-                          idx = (v-1)*100007 + u-1;
+                          idx = (gVertex[t][v]-1)*66 + gVertex[t][u]-1;
                       }
                       gEdges[t].push_back(idx);
                       break;
@@ -62,43 +62,27 @@ int main(){
     
 
     ofstream ofp("../Output/result.txt");
-    ifstream ifp("../run/2k_result.txt");
     ofp<<fixed<<setprecision(3);
-int i,j,ged,count=0;
- long double mx=0.0, mn = 1.0,sum=0.0;
-vector<long double> vec_ged[6];
-          
-    while(ifp>>i and  ifp>>j and ifp>>ged){
-		count++;
-            int tot = gVertex[i].size() + gVertex[j].size() + gEdges[i].size() + gEdges[j].size();
-            int vertexIntsct = intersect(gVertex[i],gVertex[j]);
-            int edgeIntsct = intersect(gEdges[i],gEdges[j]);
-            long double sim = (long double)(2)*(long double)(vertexIntsct+edgeIntsct); 
-	    if(tot > 0){
+    for(int i=1;i<=DATASET;i++){
+        cout<<i<<"\r";
+        cout.flush();
+        for(int j=i+1;j<=DATASET;j++){
+            int tot = gVertex[i+1].size() + gVertex[j+1].size() + gEdges[i+1].size() + gEdges[j+1].size();
+            int vertexIntsct = intersect(gVertex[i+1],gVertex[j+1]);
+            int edgeIntsct = intersect(gEdges[i+1],gEdges[j+1]);
+            long double sim = (long double)(2)*(long double)(vertexIntsct+edgeIntsct);
+            if(tot > 0){
               sim = sim/tot;
             }
             else{
               sim = 0.0;
             }
-            mx = max(mx,sim);
-            mn = min(mn,sim);
-            sum += sim;
-                ofp<<i<<" "<<j<<" "<<ged<<" ";
+            if(sim>=0.8){
+                ofp<<i<<" "<<j<<" ";
                 ofp<<sim<<endl;
-		vec_ged[ged].push_back(sim);
-            
+            }
         }
-ofp<<"\nMax sim : "<<mx<<endl;
-ofp<<"Min sim : "<<mn<<endl;
-ofp<<"avg sim : "<<1.0*sum/count<<endl<<endl;
-
-for(int i=1;i<=5;i++){
-	for(auto j: vec_ged[i])
-		ofp<<j<<" ";
-ofp<<endl;
-}
-
-  ifp.close();
+    }
     ofp.close();
     cout<<endl;   
     return 0;

@@ -629,8 +629,6 @@ void opt_order_join( void )
 #else
 	double end = (double)clock();
 	cout << "\nSelf-join resp. time: " << (end - begin)/CLOCKS_PER_SEC << endl;
-	
-
 #endif
 
 	ECHO_JOIN

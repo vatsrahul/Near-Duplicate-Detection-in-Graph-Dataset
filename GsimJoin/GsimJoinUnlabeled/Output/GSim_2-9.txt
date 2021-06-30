@@ -1,0 +1,21 @@
+Loading...
+
+Setting: Self-join - count min-edit label degree ft. + improve vf.
+         Num = 2195 Q = 2 TAU = 9 DB = ../data/data_2k1.txt
+
+Indexing time: 9.77003
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Inverted index size in byte: 329084
+               entry number: 80076
+Signature avg. number of q-gram: 139.41 <max 520>
+          multiset size in byte: 2142014
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Self-join resp. time: 0.70
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Candidates before non-trivial filters: 1125590 <46.75%>
+Candidates need GED computation: 0 <0.00%>
+Answers: 0 / candidate pairs <-nan%>
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Done...

@@ -13,13 +13,13 @@ rm a.out
 echo ------------------------------------
 echo ------------------------------------
 
-#echo Sorting results ...
-#g++ ../VEO/sortResults.cpp
-#./a.out
-#rm a.out
-#rm ../Output/result.txt
+echo Sorting results ...
+g++ ../VEO/sortResults.cpp
+./a.out
+rm a.out
+rm ../Output/result.txt
 
-#echo ------------------------------------
-#echo ------------------------------------
+echo ------------------------------------
+echo ------------------------------------
 
 echo Complete

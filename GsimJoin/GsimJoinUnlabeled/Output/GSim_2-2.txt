@@ -1,0 +1,104 @@
+Loading...
+
+Setting: Self-join - count min-edit label degree ft. + improve vf.
+         Num = 2195 Q = 2 TAU = 2 DB = ../data/data_2k1.txt
+
+Indexing time: 7.61571
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Inverted index size in byte: 16
+               entry number: 1
+Signature avg. number of q-gram: 139.41 <max 520>
+          multiset size in byte: 2142014
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Self-join resp. time: 0.00
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Candidates before non-trivial filters: 0 <0.00%>
+Candidates need GED computation: 0 <0.00%>
+Answers: 0 / candidate pairs <-nan%>
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Done...
+Loading...
+
+Setting: Self-join - count min-edit label degree ft. + improve vf.
+         Num = 2195 Q = 2 TAU = 2 DB = ../data/data_2k.txt
+
+Indexing time: 4.15299
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Inverted index size in byte: 84656
+               entry number: 588
+Signature avg. number of q-gram: 139.41 <max 520>
+          multiset size in byte: 2142014
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+68(2066) - 11(1862) 2 #31
+93(2171) - 59(1602) 1 #29
+294(2127) - 167(1308) 2 #29
+409(2121) - 272(411) 2 #20
+723(2136) - 573(1469) 2 #24
+809(2080) - 658(1024) 2 #27
+893(2062) - 753(1743) 2 #26
+927(2125) - 775(910) 2 #33
+877(2105) - 789(355) 1 #34
+878(2122) - 798(1207) 1 #35
+977(2117) - 814(227) 2 #31
+1053(2081) - 914(1407) 2 #29
+1017(2093) - 937(290) 1 #32
+1016(2079) - 964(1866) 1 #29
+1054(2082) - 998(1606) 1 #28
+1202(2084) - 1029(1435) 2 #39
+1116(2181) - 1031(1807) 1 #30
+1167(2086) - 1047(1376) 1 #28
+1267(2076) - 1079(1750) 2 #24
+1268(2094) - 1080(1852) 2 #38
+1313(2099) - 1127(1156) 2 #30
+1317(2088) - 1225(660) 1 #30
+1490(2111) - 1429(1293) 1 #33
+1531(2126) - 1458(711) 1 #38
+1593(2087) - 1470(1257) 2 #30
+1594(2090) - 1526(1647) 1 #37
+1679(2074) - 1539(924) 2 #36
+1752(2116) - 1686(961) 1 #34
+1754(2114) - 1700(81) 1 #36
+1755(2134) - 1707(529) 1 #27
+1811(2151) - 1760(670) 1 #32
+1895(2103) - 1821(1314) 2 #33
+1973(2131) - 1890(1731) 2 #38
+1956(2096) - 1914(1382) 1 #49
+2061(2113) - 1987(222) 2 #38
+2096(2109) - 2070(1390) 1 #41
+2126(2069) - 2081(602) 2 #35
+2125(2068) - 2089(1377) 2 #39
+
+Self-join resp. time: 0.56
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Candidates before non-trivial filters: 75749 <3.15%>
+Candidates need GED computation: 38 <0.00%>
+Answers: 38 / candidate pairs <100.00%>
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Done...
+Loading...
+
+Setting: Self-join - count min-edit label degree ft. + improve vf.
+         Num = 4 Q = 2 TAU = 2 DB = ../data/data_test2.txt
+
+Indexing time: 0.000423
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Inverted index size in byte: 40
+               entry number: 6
+Signature avg. number of q-gram: 6.00 <max 10>
+          multiset size in byte: 168
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+1(2) - 0(1) 2 #8
+2(3) - 1(2) 2 #11
+3(4) - 2(3) 1 #12
+
+Self-join resp. time: 0.00
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+Candidates before non-trivial filters: 3 <50.00%>
+Candidates need GED computation: 3 <50.00%>
+Answers: 3 / candidate pairs <100.00%>
+= = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Done...
