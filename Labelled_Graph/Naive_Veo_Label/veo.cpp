@@ -72,7 +72,7 @@ double computeSimilarity(Graph &g1, Graph &g2, double &commonV)
 		commonV = intersection_vertices(g1.vertices, g2.vertices,g1.gid,g2.gid,g1,g2);
 	commonV+=intersection_edges(g1.edges, g2.edges,g1.gid,g2.gid,g1,g2);
 
-//	cout << commonV << " "<<g1.vertexCount+g2.vertexCount+g1.edgeCount+g2.edgeCount<<"\n";
+	//cout << commonV << " "<<g1.vertexCount+g2.vertexCount+g1.edgeCount+g2.edgeCount<<"\n";
 
 	double simScore = (double)(200.0*(commonV)/(double)(g1.vertexCount+g2.vertexCount+g1.edgeCount+g2.edgeCount));
 

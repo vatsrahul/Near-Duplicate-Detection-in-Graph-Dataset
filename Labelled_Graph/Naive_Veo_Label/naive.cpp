@@ -19,12 +19,14 @@ void usage();
 
 // $ ./naive inp-file simScore_threshold dataset-size res-file
 
+int min_size=100000;  // min graph size in dataset.  Usd to convert ged to threshold
+
 int main(int argc, char const *argv[])
 {
 	if(argc!=5)
 		usage();
 
-	double simScore_threshold = stod(argv[2]);  // threshold to write only those graph pairs to all_graph_file.txt
+	int GED = stod(argv[2]);  // threshold to write only those graph pairs to all_graph_file.txt
 	int dataset_size = stoi(argv[3]); // size of input dataset
 	const string res_dir = argv[4]; // directory in which all stat files would be stored
 	//cout << dataset_size;
@@ -49,12 +51,13 @@ int main(int argc, char const *argv[])
 	sortGraphDataset(graph_dataset); // to sort vertex and edge set
 	cout << "All graphs in dataset sorted." << endl;
     
-	cout << 22;
+	
 
 	ofstream all_graph_file("./"+res_dir+"/all_graph_file.txt");
 	all_graph_file.close();
 
-    cout << 11;
+    double simScore_threshold = (1.0*min_size)/(2*(1.0*min_size)+GED)*200.0;   ///////////// Converting GED to threshold
+	simScore_threshold = floor(simScore_threshold);
 
 	// Result-set for each graph as vector of other graph's gid and their similarity score as double
 	vector<pair<unsigned, double>> g_res; // stores graph pair with the score of a specific graph
@@ -73,12 +76,17 @@ int main(int argc, char const *argv[])
 	// For clock-time calculation
 	chrono::high_resolution_clock::time_point clTemp0, clTemp1; 
 
+
+//unordered_map<unsigned, unordered_map<unsigned, unsigned> > temp;
+	//temp.clear();
+
 	for(int g1 = 1; g1<graph_dataset.size(); g1++)
 	{
 		clTemp0 = chrono::high_resolution_clock::now();
 
 		for(int g2 = g1-1; g2 >= 0; g2--)
 		{
+
 			// Similarity Calculation...
 			double common = 0;
 
@@ -110,6 +118,9 @@ int main(int argc, char const *argv[])
 			// Storing only those graph pairs which have similarity above (simScore_threshold)%
 			if(simScore>=simScore_threshold)
 			{
+				//temp[graph_dataset[g2].gid][graph_dataset[g1].gid]=2;
+				//temp[graph_dataset[g1].gid][graph_dataset[g2].gid]=2;
+			
 				g_res.push_back(make_pair(graph_dataset[g2].gid, simScore));
 				simPairCount++;
 			}
@@ -150,7 +161,23 @@ int main(int argc, char const *argv[])
 		gfile << global_time << endl;
 		gfile.close();
 	}
- 	// timestamping end time
+ 	
+/*	 ifstream ifp("2k_gsim23.txt");  
+	unsigned i,j,ged,cot=0;
+    while(ifp>>i and  ifp>>j and ifp>>ged){
+		//if((temp.find(i)!=temp.end() && temp[i],find(j)!=temp[i].end()))
+		if(temp[i][j]==2 and temp[j][i]==2)
+		{ cot++;}
+		else{
+			cout<<i<<" "<<j<<"\n";
+			cout<<"not found\n";
+		}
+            
+        }cout<<"all matche "<<cot<<endl;
+*/
+	 
+	 
+	 // timestamping end time
 	chrono::high_resolution_clock::time_point cl1=chrono::high_resolution_clock::now();	
 	
 	cout << "GSimJoin: VEO Similarity(naive)" << endl;
@@ -192,7 +219,9 @@ void parseGraphDataset(ifstream &dataset_file, vector<Graph> &graph_dataset, int
 		dataset_size = size;
 	graph_dataset.resize(dataset_size);
 	for(auto g_iter = graph_dataset.begin(); g_iter != graph_dataset.end(); g_iter++)
-		g_iter->readGraph(dataset_file);	
+	{	g_iter->readGraph(dataset_file);
+		min_size = min(min_size, (int)g_iter->vertexCount+(int)g_iter->edgeCount);
+	}	
 }
 
 // Sorts vertex and edge set of graph dataset

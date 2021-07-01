@@ -3,9 +3,9 @@
  // adds an edge to the graph
 void Graph:: pushEdge(unsigned src_vtx,unsigned dest_vtx, unsigned ec){		//LABELS ARE PUSHED HERE....
 	if(src_vtx > dest_vtx)
-		this->edges.push_back(src_vtx*101 + dest_vtx + ec);
+		this->edges.push_back(src_vtx*1000000 + dest_vtx*1000 + ec);
 	else 
-		this->edges.push_back(dest_vtx*101 + src_vtx + ec);
+		this->edges.push_back(dest_vtx*1000000 + src_vtx*1000 + ec);
 }
 
 // reads the graph from input file 
