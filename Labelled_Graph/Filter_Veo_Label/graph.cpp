@@ -1,7 +1,7 @@
 #include "graph.h"
 
  // adds an edge to the graph
-void Graph:: pushEdge(unsigned u,unsigned v){
+void Graph:: pushEdge(unsigned u,unsigned v, unsigned ec){
 	if(u>v)
 		edges.push_back(make_pair(u, v));
 	else 
@@ -22,23 +22,23 @@ void Graph:: readGraph(istream &inp){
 	degrees.assign(vertexCount, 0);
 	
 	unsigned ind = 0;
-	unsigned vid, src_vtx, dest_vtx;
-	int vc,sc,dc;  //Vertex type -- vc 
+	unsigned vid, src_vtx, dest_vtx, ec;
+	unsigned vc,sc,dc;  //Vertex type -- vc 
 	for(int vtx_ind=0; vtx_ind < vertexCount; vtx_ind++)
 	{
 		// each line for each vertex should be in the format like: "v vid(unsigned int)"
 		inp >> tag >> vid >> vc; // the tag 'v' along with the vertex-id
-		vertices[vtx_ind] = (vc -'A');//vid;
+		vertices[vtx_ind] = (vc);//vid;
 		vid_to_ind[vid] = vtx_ind; // mapping vertex-id to its index
 		vid_to_vc[vid] = vc;
-		//cout<<vid<<" ";
 	}
 	for(int e_ind = 0; e_ind < edgeCount; e_ind++)
 	{
 		// each line for each edge should be in the format like: "e vid_src(unsigned int) vid_dest(unsigned int)"
-		inp >> tag >> src_vtx >> sc >> dest_vtx >> dc; // the tag 'e' along with the source and destination vertex-ids
+		inp >> tag >> src_vtx  >> dest_vtx >> ec; // the tag 'e' along with the source and destination vertex-ids
 		// Undirected graph : adding edge source to destination and destination to source
-		pushEdge(vid_to_vc[src_vtx], vid_to_vc[dest_vtx]);
+		pushEdge(vid_to_vc[src_vtx], vid_to_vc[dest_vtx], ec);
+		//pushEdge(sc,dc);
 	}
 }
 

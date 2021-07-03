@@ -132,6 +132,10 @@ void VEO:: ranking(vector<Graph> &graph_dataset)
 		rank[entry->first] = r;
 		r++;
 	}
+
+	// setting the size of invertecindex list as max value of rank - r
+	InvertedIndex.resize(r);
+
 }
 
 void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, int no_of_buckets)
@@ -146,18 +150,23 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 	
 		double graph_size = graph_dataset[g_ind].vertexCount + graph_dataset[g_ind].edgeCount; // size of graph g_ind
 
-		if(mode == 3)
+		if(mode == 3)	 // static Mode
 		{
+			// For (g_ind)th graph prefix length will be this only for computation with any other graph.
+
 			double invUbound = (double)1.0/ubound; // inverse of ubound
 			prefixLength = 1 +(unsigned)(ceil((graph_size*(double)(1.0-invUbound)))); // Prefix Length
 		}
-		else
+		else		// Dynamic Mode
 		{
+			// since it is dynamic, For (g_ind)th graph, prefix length will be calculated depending on other
+			//  graphs size. so for now we will compute rank list for full size.
+
 			prefixLength = graph_size;
 		}
 		
 		// Constructing the rank-list 
-
+	
 		// Putting vertex and edge ranks together
 		vector<unsigned> graph_ranks;
 		for(int vtx_ind = 0; vtx_ind < graph_dataset[g_ind].vertices.size(); vtx_ind++)
@@ -179,9 +188,12 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 		// sort the ranks of the graph in descending order  
 		sort(graph_ranks.begin(), graph_ranks.end(), greater <>());
 
+
 		// crop graph's rank-list upto prefix-length
-		for(int pref = 0; pref < prefixLength; pref++)
+		for(int pref = 0; pref < graph_size; pref++)
 			rankList[g_ind].push_back(graph_ranks[pref]);
+
+		// rankList is till prefix length
 
 		if(isBucket)
 		{
@@ -202,6 +214,55 @@ void VEO:: buildPrefix(vector<Graph> &graph_dataset, int mode, bool isBucket, in
 			}
 		}
 	}
+
+
+// INVERTED INDEXING FOR RANKLISTS
+
+	sparse_table.resize(graph_dataset.size());
+
+	for(int g_ind = 0; g_ind < graph_dataset.size(); g_ind++)
+	{
+		double graph_size = graph_dataset[g_ind].vertexCount + graph_dataset[g_ind].edgeCount; 
+		double invUbound = (double)1.0/ubound; // inverse of ubound
+		int	prefixLength = 1 +(unsigned)(ceil((graph_size*(double)(1.0-invUbound)))); // Prefix Length
+		//int prefixLength = rankList[g_ind].size();
+
+		///////////////////////////////////////////////////
+		// for this particular graph, make a sparse table with help of inverted list
+
+	//	set<int> ss; // ss set contains list of graphs which are similar to (g_ind)th graph
+
+		for(int i = 0; i < prefixLength; i++){ // traversing a graph
+
+			int rank = rankList[g_ind][i];
+
+			for(int j = 0; j < InvertedIndex[rank].size(); j++){ // traversing a rank's inverted list
+
+				int gr = InvertedIndex[rank][j].first;
+				if(gr == g_ind)		// skipping itself in inverted list
+					continue;
+				
+				//ss.insert ( InvertedIndex[rank][j] );
+				if( sparse_table[g_ind].count( gr ) == 0)  // if occuring for the first time
+					sparse_table[g_ind][ gr ].first = 1;
+				else
+					{
+						sparse_table[g_ind][ gr ].first ++;		// incrementing the count of commons in 2 graphs list upto a length
+						sparse_table[g_ind][ gr ].second = InvertedIndex[rank][j].second;  // storing that length of gr (shorter graph) upto which commons have been counted
+					}
+				}
+		}
+
+		///////////////////////////////////////////////////
+
+		//Now lets create InvertedIndex for (g_ind)th graph..
+		
+		for(int pref = 0; pref < prefixLength; pref++)
+			InvertedIndex[ rankList[g_ind][pref] ].push_back({g_ind, pref+1}); // pushing graph_id and position of the particular attribute/rank in that graph's list 
+
+	}
+
+
 }
 
 // index each input graphs in dataset
@@ -220,12 +281,16 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 	unsigned prefix1;
 	unsigned prefix2;
 
-	if(mode == 3)
+	if(mode == 3) // static Mode
 	{
-		prefix1 = rankList[index1].size(); // prefix-length of graph g1
-		prefix2 = rankList[index2].size(); // prefix-length of graph g2
+		double invUbound = (double)1.0/ubound; // inverse of ubound
+		//prefix1 = rankList[index1].size(); // prefix-length of graph g1
+		prefix1 = 1 +(unsigned)(ceil((size1*(double)(1.0-invUbound)))); // Prefix Length
+		//prefix2 = rankList[index2].size(); // prefix-length of graph g2
+		prefix2 = 1 +(unsigned)(ceil((size2*(double)(1.0-invUbound)))); // Prefix Length
+		
 	}
-	if(mode == 4)
+	if(mode == 4)	// Dynamic Mode
 	{
 		unsigned common = (unsigned)floor(((double)(threshold/200.0))*(double)(size1+size2));
 		prefix1 = size1 - common + 1; // prefix-length of graph g1
@@ -236,7 +301,36 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 	unsigned start2 = 0;
 	bool out = true;
 	long double commonTotal=0;
-	while(start1 < prefix1 && start2 < prefix2)
+
+	// atleast 1 common you got in the prefix part, then .
+    if(sparse_table[index1].count(index2) != 0 or sparse_table[index2].count(index1) != 0)
+        //{out = false; cout<<"f\n";}
+    {
+		out=false;
+        int partial_score, remaining1, remaining2;
+
+        if(sparse_table[index1].count(index2) != 0)
+            partial_score = sparse_table[index1][index2].first;
+        else
+            partial_score = sparse_table[index2][index1].first;
+
+//cout<<partial_score<<"\n";
+        remaining1 = size1 - prefix1;  // big graph
+        remaining2 = size2 - sparse_table[index1][index2].second;   // sparse_table[index1][index2].second is the position upto which partial_score is stored in sparse table
+        
+        long double sizeSum = (long double)(size1 + size2);
+        long double Common = (long double)1.0*(partial_score + min(remaining1, remaining2));
+		commonTotal = partial_score;
+        long double veoEstimate = (long double)(200.0*Common)/(sizeSum);
+
+	//	if(g1.gid == 5 and g2.gid == 33)
+       // cout<<index1<<" "<<index2<<" "<<" "<<veoEstimate<<"\n\n";
+        if((long double)veoEstimate < (long double)threshold)
+            out = true;
+    }
+
+
+	/*while(start1 < prefix1 && start2 < prefix2)
 	{
 		if(rankList[index1][start1] == rankList[index2][start2] && isBucket)
 		{
@@ -254,12 +348,26 @@ bool VEO:: indexFilter(Graph &g1, Graph &g2, int index1, int index2, int mode, b
 			start1++;
 		else
 			start2++;
-	}
+	}*/
 	if(out)
 		return out;
 	indexCount++;
 	//cout << "prefix1: " << prefix1 << " , prefix2: " << prefix2 << endl;
 	//cout << "start1: " << start1 << " , start2: " << start2 << endl;
+	start1 = prefix1;
+	start2 = sparse_table[index1][index2].second;
+
+	if(start1 != 0)
+	 start1--;
+	if(start2 != 0)
+	 start2--;
+
+	if(start1 < 0)
+	{start1=0;cout<<"neg ";}
+	if(start2 < 0)
+	start2=0;
+	
+	//cout<<"done1 "<<start1<<" "<<start2<<"\n";
 	if(isBucket)
 	{
 		for(int i = 0; i < no_of_buckets; i++)

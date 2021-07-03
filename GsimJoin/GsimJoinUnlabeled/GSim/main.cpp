@@ -360,6 +360,11 @@ int main(int argc, char** argv)
 			break;
 	}
 	
+
+	struct rusage r_usage;
+	getrusage(RUSAGE_SELF, &r_usage);
+	cout<<"Memory used : "<< r_usage.ru_maxrss/1024.0<<" MB\n";
+
 	clean();
 	return 0;
 }

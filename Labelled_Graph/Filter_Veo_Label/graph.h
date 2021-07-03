@@ -9,7 +9,7 @@ class Graph
 		vector<unsigned> vertices;
 		vector<unsigned> degrees;
 		unordered_map<unsigned,unsigned> vid_to_ind; // vid to index in adjacency list of graph
-		unordered_map<unsigned,char> vid_to_vc;
+		unordered_map<unsigned,unsigned> vid_to_vc;
 		vector<pair<unsigned, unsigned> > edges;
 
 		Graph(){
@@ -19,7 +19,7 @@ class Graph
 		}
 
 		void readGraph(istream &inp);
-		void pushEdge(unsigned u, unsigned v);
+		void pushEdge(unsigned u, unsigned v, unsigned ec);
 		void displayGraph();
 };
 

@@ -17,6 +17,16 @@
 #include <iterator>
 #include <algorithm>
 
+#include<sys/time.h>
+#include<sys/stat.h>
+#include<sys/types.h>
+
+#include<sys/resource.h>
+#include<time.h>
+#include<chrono>
+
+
+
 #ifdef _DEBUG
 #include <cassert>
 #endif

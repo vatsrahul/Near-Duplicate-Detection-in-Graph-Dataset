@@ -7,6 +7,8 @@ public:
 	double ubound;
 	map< pair<unsigned, unsigned>, unsigned long > rank;
 	vector<vector<unsigned long>> rankList;
+	vector<vector<pair<unsigned long ,unsigned long>>> InvertedIndex;
+	vector< unordered_map<int,pair<int,int>> > sparse_table;    // a array of hash_table
 	vector<vector<vector<unsigned>>> bucket;
 	VEO(double threshold)
 	{
