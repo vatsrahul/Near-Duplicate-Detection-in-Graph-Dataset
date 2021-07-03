@@ -4,8 +4,8 @@ using namespace std;
 int main(){
 
 
-    ifstream inp("data_test.txt");
-    ofstream otp("../data/data_test1.txt");
+    ifstream inp("data_5k.txt");
+    ofstream otp("../data/data_5k.txt");
     
     int size;
     inp >> size;

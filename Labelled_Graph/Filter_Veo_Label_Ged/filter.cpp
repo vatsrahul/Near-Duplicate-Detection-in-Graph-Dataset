@@ -261,7 +261,7 @@ cout<<GED<<" "<<min_size<<" @\n";
 	chrono::high_resolution_clock::time_point cl0 = chrono::high_resolution_clock::now();
 
 ////////////////////////////////////////////////////////////
-	Preprocess_GED(argv[1], 2, GED);       /////// Preprocessing for GED with q-gram=4 and tau=5
+	Preprocess_GED(argv[1], 4, GED);       /////// Preprocessing for GED with q-gram=4 and tau=5
 ////////////////////////////////////////////////////////////
 	//unordered_map<unsigned, unordered_map<unsigned, unsigned> > temp;
 	//temp.clear();
